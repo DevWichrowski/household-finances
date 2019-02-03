@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.scss';
-import {connect} from 'react-redux';
+import Main from "./components/Main/Main";
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>{this.props.testInfo.test}</h1>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <Main/>
+            </div>
+        );
+    }
 }
-const mapStateToProps = (state) => ({
-  testInfo: state.testInfo
-});
 
-export default connect(mapStateToProps, null)(App);
+export default App;
