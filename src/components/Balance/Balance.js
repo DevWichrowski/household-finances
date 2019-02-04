@@ -10,13 +10,13 @@ class Balance extends Component {
                 <h3>Stan konta</h3>
                 <div className="balance-container">
                     <h2>Saldo</h2>
-                    <h1>
+                    <p>
                         <CountUp end={this.props.balanceInfo.balance}
                                  decimal=","
                                  decimals={2}
                                  suffix=" zł"
                         />
-                    </h1>
+                    </p>
                 </div>
             </div>
         );
