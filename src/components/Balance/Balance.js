@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Balance.scss';
 import {connect} from "react-redux";
-import {getBalance} from "../../store/actions/balanceAction";
+import CountUp from 'react-countup';
 
 class Balance extends Component {
     render() {
@@ -9,8 +9,14 @@ class Balance extends Component {
             <div className="Balance">
                 <h3>Stan konta</h3>
                 <div className="balance-container">
-                <h2>Saldo</h2>
-                    <h1>{this.props.balanceInfo.balance} zł</h1>
+                    <h2>Saldo</h2>
+                    <h1>
+                        <CountUp end={this.props.balanceInfo.balance}
+                                 decimal=","
+                                 decimals={2}
+                                 suffix=" zł"
+                        />
+                    </h1>
                 </div>
             </div>
         );
