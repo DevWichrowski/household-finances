@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { test } from "./test";
+import { balanceReducer } from "./balanceReducer";
 
 export const rootReducer = combineReducers({
-  testInfo: test
+  balanceInfo: balanceReducer,
 });
