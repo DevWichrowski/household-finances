@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Layout, Menu, Icon} from 'antd';
 import 'antd/dist/antd.css';
 import './Main.scss';
+import Balance from "../Balance/Balance";
+import {NavLink, Route} from "react-router-dom";
 
 
 class Main extends Component {
@@ -31,10 +33,14 @@ class Main extends Component {
                     >
                         <div className="logo"/>
                         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+
                             <Menu.Item key="1">
+                                <NavLink to="/">
                                 <Icon type="credit-card"/>
                                 <span>Stan konta</span>
+                                </NavLink>
                             </Menu.Item>
+
                             <Menu.Item key="2">
                                 <Icon type="line-chart"/>
                                 <span>Historia</span>
@@ -47,7 +53,7 @@ class Main extends Component {
                     </Sider>
                     <Layout>
                         <Content className="content">
-
+                            <Route exact path="/" component={Balance}/>
                         </Content>
                         <Footer style={{textAlign: 'center'}}>
                             @Author <a href="https://github.com/DevWichrowski">DevWichrowski</a>
