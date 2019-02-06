@@ -7,8 +7,8 @@ const initialState = {
 export function balanceReducer(state = initialState, action) {
     switch (action.type) {
 
-        case BalanceAction.GET_BALANCE: {
-            return {...state}
+        case BalanceAction.ADD_CREDITS: {
+            return {...state, balance: state.balance + action.payload}
         }
         default: {
             return state;

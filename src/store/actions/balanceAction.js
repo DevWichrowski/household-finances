@@ -1,5 +1,6 @@
-export const GET_BALANCE = '[Balance] - GET BALANCE';
+export const ADD_CREDITS = '[Balance] - ADD CREDITS';
 
-export const getBalance = () =>({
-    type: GET_BALANCE
+export const addCredits = (payload) => ({
+    type: ADD_CREDITS,
+    payload
 });
