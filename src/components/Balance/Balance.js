@@ -3,6 +3,7 @@ import './Balance.scss';
 import {connect} from "react-redux";
 import CountUp from 'react-countup';
 import {addCredits, withdrawCredits} from "../../store/actions/balanceAction";
+import { Button} from 'antd';
 
 class Balance extends Component {
     render() {
@@ -22,6 +23,7 @@ class Balance extends Component {
                     <button onClick={() => this.props.withdrawCredits(100)}> odejmij</button>
                     <button disabled> Przelej na cel</button>
                 </div>
+                <Button className="operations-button" type="primary" size={'large'}> Operacje </Button>
             </div>
         );
     }
