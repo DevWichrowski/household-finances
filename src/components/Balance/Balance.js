@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Balance.scss';
 import {connect} from "react-redux";
 import CountUp from 'react-countup';
-import {addCredits} from "../../store/actions/balanceAction";
+import {addCredits, withdrawCredits} from "../../store/actions/balanceAction";
 
 class Balance extends Component {
     render() {
@@ -19,6 +19,8 @@ class Balance extends Component {
                         />
                     </p>
                     <button onClick={() => this.props.addCredits(100)}> dodaj</button>
+                    <button onClick={() => this.props.withdrawCredits(100)}> odejmij</button>
+                    <button disabled> Przelej na cel</button>
                 </div>
             </div>
         );
@@ -27,6 +29,7 @@ class Balance extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
     addCredits: (payload) => dispatch(addCredits(payload)),
+    withdrawCredits: (payload) => dispatch(withdrawCredits(payload)),
 });
 
 const mapStateToProps = (state) => ({

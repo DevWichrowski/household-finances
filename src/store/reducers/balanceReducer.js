@@ -10,6 +10,10 @@ export function balanceReducer(state = initialState, action) {
         case BalanceAction.ADD_CREDITS: {
             return {...state, balance: state.balance + action.payload}
         }
+        case BalanceAction.WITHDRAW_CREDITS: {
+            return {...state, balance: state.balance - action.payload}
+        }
+
         default: {
             return state;
         }
