@@ -4,22 +4,24 @@ import {connect} from "react-redux";
 import {addCredits, withdrawCredits} from "../../store/actions/balanceAction";
 import {Button} from 'antd';
 import Saldo from "./Saldo/Saldo";
-import OperationsMenu from "./OperationsMenu/OperationsMenu";
+import OperationsModal from "./OperationsModal/OperationsModal";
 
 class Balance extends Component {
-    constructor(props){
-        super(props);
+    state = { visible: false };
 
-        this.state = {
-            operationMenuVisible: false,
-        }
-    }
-
-    toggleOperationMenu = () => this.setState({operationMenuVisible: !this.state.operationMenuVisible});
-
-    addBalance = () =>{
-      this.toggleOperationMenu();
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
     };
+
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+
 
     render() {
         return (
@@ -31,8 +33,9 @@ class Balance extends Component {
                     {/*<button onClick={() => this.props.withdrawCredits(100)}> odejmij</button>*/}
                     {/*<button disabled> Przelej na cel</button>*/}
                 </div>
-                {this.state.operationMenuVisible === true ? <OperationsMenu toggleOperationMenu={this.toggleOperationMenu}/> : null}
-                <Button className="operations-button" type="primary" size={'large'} onClick={this.toggleOperationMenu}> Operacje </Button>
+                <OperationsModal visible={this.state.visible} onCancel={this.handleCancel}/>
+                <Button className="operations-button" type="primary" size={'large'}
+                        onClick={this.showModal}> Operacje </Button>
             </div>
         );
     }
