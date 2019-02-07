@@ -15,8 +15,10 @@ class Balance extends Component {
         }
     }
 
-    toggleOperationMenu = () =>{
-        this.setState({operationMenuVisible: !this.state.operationMenuVisible})
+    toggleOperationMenu = () => this.setState({operationMenuVisible: !this.state.operationMenuVisible});
+
+    addBalance = () =>{
+      this.toggleOperationMenu();
     };
 
     render() {
@@ -29,7 +31,7 @@ class Balance extends Component {
                     {/*<button onClick={() => this.props.withdrawCredits(100)}> odejmij</button>*/}
                     {/*<button disabled> Przelej na cel</button>*/}
                 </div>
-                {this.state.operationMenuVisible === true ? <OperationsMenu/> : null}
+                {this.state.operationMenuVisible === true ? <OperationsMenu toggleOperationMenu={this.toggleOperationMenu}/> : null}
                 <Button className="operations-button" type="primary" size={'large'} onClick={this.toggleOperationMenu}> Operacje </Button>
             </div>
         );
@@ -37,8 +39,8 @@ class Balance extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addCredits: (payload) => dispatch(addCredits(payload)),
-    withdrawCredits: (payload) => dispatch(withdrawCredits(payload)),
+    addCreditsToStore: (payload) => dispatch(addCredits(payload)),
+    withdrawCreditsFromStore: (payload) => dispatch(withdrawCredits(payload)),
 });
 
 const mapStateToProps = (state) => ({

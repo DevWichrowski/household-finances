@@ -17,7 +17,7 @@ class OperationsMenu extends Component {
                     mode="inline"
                 >
                     <MenuItemGroup key="operations-option" title="Operacje">
-                        <Menu.Item key="1">Dodaj kwote</Menu.Item>
+                        <Menu.Item key="1" onClick={this.props.toggleOperationMenu}>Dodaj kwote</Menu.Item>
                         <Menu.Item key="2">Odejmij kwote</Menu.Item>
                         <Menu.Item key="3">Odłóż na cel</Menu.Item>
                     </MenuItemGroup>
