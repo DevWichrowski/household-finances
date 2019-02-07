@@ -7,7 +7,12 @@ import Saldo from "./Saldo/Saldo";
 import OperationsModal from "./OperationsModal/OperationsModal";
 
 class Balance extends Component {
-    state = { visible: false };
+    constructor(props){
+        super(props);
+
+        this.state = { visible: false };
+    }
+
 
     showModal = () => {
         this.setState({
@@ -21,8 +26,7 @@ class Balance extends Component {
             visible: false,
         });
     };
-
-
+    
     render() {
         return (
             <div className="Balance">
