@@ -14,6 +14,11 @@ class AddFundsModal extends Component {
 			funds: null,
 		};
 	}
+
+	saveFundsToState = (e) =>{
+		this.setState({funds: e.target.value})
+	}
+
 	render() {
 		const { visible, loading } = this.state;
 		return (
@@ -33,7 +38,8 @@ class AddFundsModal extends Component {
 					]}
 				>	
 					<p>Poniżej podaj kwotę do wpłaty</p>
-					<Input />
+					<p>{this.state.funds}</p>
+					<Input onChange={this.saveFundsToState}/>
 				</Modal>
 			</div>
 		);
