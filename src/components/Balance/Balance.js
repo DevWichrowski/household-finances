@@ -11,10 +11,10 @@ class Balance extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { 
+		this.state = {
 			visible: false,
-			addFundsVisible: false,
-		 };
+			addFundsVisible: false
+		};
 	}
 
 	showModal = () => {
@@ -44,12 +44,13 @@ class Balance extends Component {
 			<div className="Balance">
 				<div className="balance-container">
 					<Saldo end={this.props.balanceInfo.balance} />
-
-					{/*<button onClick={() => this.props.addCredits(100)}> dodaj</button>*/}
-					{/*<button onClick={() => this.props.withdrawCredits(100)}> odejmij</button>*/}
-					{/*<button disabled> Przelej na cel</button>*/}
 				</div>
-				<OperationsModal visible={this.state.visible} onCancel={this.handleCancel} showAddModal={() => this.showAddFundsModal()} />
+
+				<OperationsModal
+					visible={this.state.visible}
+					onCancel={this.handleCancel}
+					showAddModal={() => this.showAddFundsModal()}
+				/>
 				<AddFundsModal visible={this.state.addFundsVisible} onCancel={this.handleCancel} />
 				<Button className="operations-button" type="primary" size={'large'} onClick={this.showModal}>
 					{' '}
