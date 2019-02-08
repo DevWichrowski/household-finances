@@ -11,13 +11,13 @@ class AddFundsModal extends Component {
 		this.state = {
 			loading: false,
 			visible: false,
-			funds: null,
+			funds: null
 		};
 	}
 
-	saveFundsToState = (e) =>{
-		this.setState({funds: e.target.value})
-	}
+	saveFundsToState = (e) => {
+		this.setState({ funds: e.target.value });
+	};
 
 	render() {
 		const { visible, loading } = this.state;
@@ -32,14 +32,22 @@ class AddFundsModal extends Component {
 						<Button key="back" onClick={this.props.onCancel}>
 							Zamknij
 						</Button>,
-						<Button key="submit" type="primary" loading={loading} onClick={this.props.handleOk}>
+						<Button
+							key="submit"
+							type="primary"
+							loading={loading}
+							onClick={() => {
+								this.props.addCreditsToStore(parseFloat(this.state.funds));
+								this.props.onCancel();
+							}}
+						>
 							Dodaj
 						</Button>
 					]}
-				>	
+				>
 					<p>Poniżej podaj kwotę do wpłaty</p>
 					<p>{this.state.funds}</p>
-					<Input onChange={this.saveFundsToState}/>
+					<Input onChange={this.saveFundsToState} />
 				</Modal>
 			</div>
 		);
@@ -47,8 +55,7 @@ class AddFundsModal extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	addCreditsToStore: (payload) => dispatch(addCredits(payload)),
-	withdrawCreditsFromStore: (payload) => dispatch(withdrawCredits(payload))
+	addCreditsToStore: (payload) => dispatch(addCredits(payload))
 });
 
 export default connect(null, mapDispatchToProps)(AddFundsModal);
