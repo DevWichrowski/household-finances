@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './AddFundsModal.scss';
-import { Modal, Button, Input } from 'antd';
+import { Modal, Button, Input, message } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
 
@@ -21,6 +21,8 @@ class AddFundsModal extends Component {
 
 	render() {
 		const { visible, loading } = this.state;
+		const successMessage = () => message.success(`Pomyślnie dodane ${this.state.funds} zł do konta głównego`);
+
 		return (
 			<div className="AddFundsModal">
 				<Modal
@@ -39,6 +41,7 @@ class AddFundsModal extends Component {
 							onClick={() => {
 								this.props.addCreditsToStore(parseFloat(this.state.funds));
 								this.props.onCancel();
+								successMessage()
 							}}
 						>
 							Dodaj
@@ -46,7 +49,6 @@ class AddFundsModal extends Component {
 					]}
 				>
 					<p>Poniżej podaj kwotę do wpłaty</p>
-					<p>{this.state.funds}</p>
 					<Input onChange={this.saveFundsToState} />
 				</Modal>
 			</div>
