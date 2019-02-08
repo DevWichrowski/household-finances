@@ -22,6 +22,7 @@ class AddFundsModal extends Component {
 	render() {
 		const { visible, loading } = this.state;
 		const successMessage = () => message.success(`Pomyślnie dodane ${this.state.funds} zł do konta głównego`);
+		const errorMessage = () => {message.error(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);};
 
 		return (
 			<div className="AddFundsModal">
@@ -39,9 +40,13 @@ class AddFundsModal extends Component {
 							type="primary"
 							loading={loading}
 							onClick={() => {
-								this.props.addCreditsToStore(parseFloat(this.state.funds));
-								this.props.onCancel();
-								successMessage()
+								if (this.state.funds > 0) {
+									this.props.addCreditsToStore(parseFloat(this.state.funds));
+									this.props.onCancel();
+									successMessage();
+								} else {
+									errorMessage();
+								}
 							}}
 						>
 							Dodaj
