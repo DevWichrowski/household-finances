@@ -8,7 +8,7 @@ class OperationsModal extends Component {
 
         return (
             <div className="OperationsModal">
-                <Modal
+                <Modal className="operations-modal"
                     title="Operacje"
                     visible={this.props.visible}
                     onCancel={this.props.onCancel}
