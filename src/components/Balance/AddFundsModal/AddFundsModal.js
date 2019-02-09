@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './AddFundsModal.scss';
 import { Modal, Button, Input, message } from 'antd';
 import { connect } from 'react-redux';
-import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
+import { addCredits } from '../../../store/actions/balanceAction';
 
 class AddFundsModal extends Component {
 	constructor(props) {
@@ -19,10 +19,14 @@ class AddFundsModal extends Component {
 		this.setState({ funds: e.target.value });
 	};
 
+	clearState = () =>{
+		this.setState({funds: null});
+	}
+
 	render() {
-		const { visible, loading } = this.state;
+		const { loading } = this.state;
 		const successMessage = () => message.success(`Pomyślnie dodane ${this.state.funds} zł do konta głównego`);
-		const errorMessage = () => {message.error(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);};
+		const errorMessage = () => message.error(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
 
 		return (
 			<div className="AddFundsModal">
@@ -44,6 +48,7 @@ class AddFundsModal extends Component {
 									this.props.addCreditsToStore(parseFloat(this.state.funds));
 									this.props.onCancel();
 									successMessage();
+									this.clearState();
 								} else {
 									errorMessage();
 								}
@@ -54,7 +59,7 @@ class AddFundsModal extends Component {
 					]}
 				>
 					<p>Poniżej podaj kwotę do wpłaty</p>
-					<Input onChange={this.saveFundsToState} />
+					<Input onChange={this.saveFundsToState} value={this.state.funds}/>
 				</Modal>
 			</div>
 		);
