@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import './WithdrawFundsModal.scss'
-import { Modal, Button, Input, message } from 'antd';
+import React, { Component } from 'react';
+import './WithdrawFundsModal.scss';
+import { Modal, Button, InputNumber, message } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
 
@@ -15,18 +15,24 @@ class WithdrawFundsModal extends Component {
 		};
 	}
 
-	saveFundsToState = (e) => {
-		this.setState({ funds: e.target.value });
+	saveFundsToState = (value) => {
+		this.setState({ funds: value });
 	};
 
-	clearState = () =>{
-		this.setState({funds: null});
-	}
+	clearState = () => {
+		this.setState({ funds: null });
+	};
 
 	render() {
 		const { loading } = this.state;
-		const successMessage = () => message.success(`Pomyślnie wypłacono ${this.state.funds} zł z konta głównego`);
-		const errorMessage = () => message.error(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
+		const successMessage = () => {
+			message.success(`Pomyślnie wypłacono ${this.state.funds} zł z konta głównego`);
+			this.clearState();
+		};
+		const errorMessage = (text) => {
+			message.error(text);
+			this.clearState();
+		};
 
 		return (
 			<div className="WithdrawFundsModal">
@@ -44,22 +50,25 @@ class WithdrawFundsModal extends Component {
 							type="primary"
 							loading={loading}
 							onClick={() => {
-								if (this.state.funds > 0) {
-									this.props.withdrawCredits(parseFloat(this.state.funds));
-									this.props.onCancel();
-									successMessage();
-									this.clearState();
+								if (this.state.funds <= this.props.balanceInfo.balance) {
+									if (this.state.funds > 0) {
+										this.props.withdrawCredits(parseFloat(this.state.funds));
+										this.props.onCancel();
+										successMessage();
+									} else {
+										errorMessage(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
+									}
 								} else {
-									errorMessage();
+									errorMessage(`Brak wystarczających środków na koncie.`);
 								}
 							}}
 						>
-							Dodaj
+							Wypłać
 						</Button>
 					]}
 				>
 					<p>Poniżej podaj kwotę do wypłaty</p>
-					<Input onChange={this.saveFundsToState} value={this.state.funds}/>
+					<InputNumber onChange={() => this.saveFundsToState()} value={this.state.funds} size={'large'} />
 				</Modal>
 			</div>
 		);
@@ -67,8 +76,12 @@ class WithdrawFundsModal extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addCreditsToStore: (payload) => dispatch(addCredits(payload)),
-    withdrawCredits: (payload) => dispatch(withdrawCredits(payload))
+	addCreditsToStore: (payload) => dispatch(addCredits(payload)),
+	withdrawCredits: (payload) => dispatch(withdrawCredits(payload))
 });
 
-export default connect(null, mapDispatchToProps)(WithdrawFundsModal);
+const mapStateToProps = (state) => ({
+	balanceInfo: state.balanceInfo
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithdrawFundsModal);

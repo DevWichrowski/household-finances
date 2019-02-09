@@ -19,9 +19,9 @@ class AddFundsModal extends Component {
 		this.setState({ funds: e.target.value });
 	};
 
-	clearState = () =>{
-		this.setState({funds: null});
-	}
+	clearState = () => {
+		this.setState({ funds: null });
+	};
 
 	render() {
 		const { loading } = this.state;
@@ -59,7 +59,7 @@ class AddFundsModal extends Component {
 					]}
 				>
 					<p>Poniżej podaj kwotę do wpłaty</p>
-					<Input onChange={this.saveFundsToState} value={this.state.funds}/>
+					<Input onChange={this.saveFundsToState} value={this.state.funds} />
 				</Modal>
 			</div>
 		);

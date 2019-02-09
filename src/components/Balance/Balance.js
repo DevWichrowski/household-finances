@@ -80,7 +80,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-	personalInfo: state.personalInfo,
 	balanceInfo: state.balanceInfo
 });
 
