@@ -15,7 +15,7 @@ class OperationsModal extends Component {
                     footer={null}
                 >
                     <div className="modal-option" onClick={() => this.props.showAddModal()}>Dodaj kwote</div>
-                    <div className="modal-option">Wypłać kwote</div>
+                    <div className="modal-option" onClick={() => this.props.showWithdrawFundsModal()}>Wypłać kwote</div>
                     <div  className="modal-option">Przelej na cel</div>
                 </Modal>
             </div>
