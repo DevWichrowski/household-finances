@@ -46,7 +46,7 @@ class AddFundsModal extends Component {
 							loading={loading}
 							onClick={() => {
 								if (this.state.funds > 0) {
-									this.props.addCreditsToStore({funds: this.state.funds, type: 'add'});
+									this.props.addCreditsToStore(this.state.funds);
 									this.props.onCancel();
 									successMessage();
 									this.clearState();

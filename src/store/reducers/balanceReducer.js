@@ -8,10 +8,10 @@ const initialState = {
 export function balanceReducer(state = initialState, action) {
 	switch (action.type) {
 		case BalanceAction.ADD_CREDITS: {
-			return { ...state, balance: state.balance + action.payload.funds, operations: [...state.operations, action.payload]};
+			return { ...state, balance: state.balance + action.payload, operations: [...state.operations, {funds: action.payload, operationType: action.operationType}]};
 		}
 		case BalanceAction.WITHDRAW_CREDITS: {
-			return { ...state, balance: state.balance - action.payload.funds, operations: [...state.operations, action.payload]};
+			return { ...state, balance: state.balance - action.payload, operations: [...state.operations, {funds: action.payload, operationType: action.operationType}]};
 		}
 
 		default: {
