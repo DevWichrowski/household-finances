@@ -79,6 +79,7 @@ class OperationsTable extends Component {
 			<div className="OperationsTable">
 				<span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
 				<Table
+					rowKey={'id'}
 					dataSource={this.props.balanceInfo.operations}
 					columns={columns}
 					description={'brak danych'}

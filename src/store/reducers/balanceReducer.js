@@ -4,6 +4,7 @@ const initialState = {
 	balance: 5000,
 	operations: [
 		{
+			id: '_asd123eas',
 			funds: 5000,
 			operationType: 'addOperation',
 			operationDate: '10-02-2019, 17:35'
@@ -19,7 +20,7 @@ export function balanceReducer(state = initialState, action) {
 				balance: state.balance + action.payload,
 				operations: [
 					...state.operations,
-					{ funds: action.payload, operationType: action.operationType, operationDate: action.operationDate }
+					{ funds: action.payload, operationType: action.operationType, operationDate: action.operationDate, id: action.id }
 				]
 			};
 		}
@@ -29,7 +30,7 @@ export function balanceReducer(state = initialState, action) {
 				balance: state.balance - action.payload,
 				operations: [
 					...state.operations,
-					{ funds: action.payload, operationType: action.operationType, operationDate: action.operationDate }
+					{ funds: action.payload, operationType: action.operationType, operationDate: action.operationDate, id: action.id}
 				]
 			};
 		}
