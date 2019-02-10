@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './OperationsTable.scss';
-import { Table, Tag, Button } from 'antd';
+import { Table, Tag} from 'antd';
 import { connect } from 'react-redux';
 
 class OperationsTable extends Component {
@@ -29,11 +29,7 @@ class OperationsTable extends Component {
 	};
 
 	render() {
-		const { loading, selectedRowKeys } = this.state;
-		const rowSelection = {
-			selectedRowKeys,
-			onChange: this.onSelectChange
-		};
+		const { selectedRowKeys } = this.state;
 		const hasSelected = selectedRowKeys.length > 0;
 
 		const columns = [
