@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './OperationsTable.scss';
-import { Table, Divider, Tag } from 'antd';
+import { Table, Tag } from 'antd';
+import { connect } from 'react-redux';
 
-export default class OperationsTable extends Component {
+class OperationsTable extends Component {
 	render() {
 		const dataSource = [
 			{
@@ -22,30 +23,41 @@ export default class OperationsTable extends Component {
 		const columns = [
 			{
 				title: 'Typ',
-				dataIndex: 'name',
-				key: 'name'
-			},
-			{
-				title: 'Kwota',
-				dataIndex: 'age',
-				key: 'age'
+				dataIndex: 'funds',
+				key: 'funds'
 			},
 			{
 				title: 'Kategoria',
-				dataIndex: 'address',
-				key: 'address'
+				dataIndex: 'Kategoria',
+				key: 'Kategoria'
 			},
 			{
 				title: 'Data',
-				dataIndex: 'Data',
-				key: 'Data'
+				dataIndex: 'operationDate',
+				key: 'operationDate'
+			},
+			{
+				title: 'Kwota',
+				dataIndex: `funds`,
+				key: `funds`,				
 			}
 		];
 
 		return (
 			<div className="OperationsTable">
-				<Table dataSource={dataSource} columns={columns} />
+				<Table dataSource={this.props.balanceInfo.operations} columns={columns} />
 			</div>
 		);
 	}
 }
+
+// const mapDispatchToProps = (dispatch) => ({
+// 	addCreditsToStore: (payload) => dispatch(addCredits(payload)),
+// 	withdrawCreditsFromStore: (payload) => dispatch(withdrawCredits(payload))
+// });
+
+const mapStateToProps = (state) => ({
+	balanceInfo: state.balanceInfo
+});
+
+export default connect(mapStateToProps, null)(OperationsTable);
