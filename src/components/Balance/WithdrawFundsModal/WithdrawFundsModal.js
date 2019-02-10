@@ -54,7 +54,7 @@ class WithdrawFundsModal extends Component {
 								console.log(this.state.funds);
 								if (this.state.funds <= this.props.balanceInfo.balance) {
 									if (this.state.funds > 0) {
-										this.props.withdrawCredits(parseFloat(this.state.funds));
+										this.props.withdrawCredits({funds: this.state.funds, type: 'withdraw'});
 										this.props.onCancel();
 										successMessage();
 									} else {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './AddFundsModal.scss';
-import { Modal, Button, Input, message } from 'antd';
+import { Modal, Button, message } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits } from '../../../store/actions/balanceAction';
 import NumericInput from 'react-numeric-input';
@@ -46,7 +46,7 @@ class AddFundsModal extends Component {
 							loading={loading}
 							onClick={() => {
 								if (this.state.funds > 0) {
-									this.props.addCreditsToStore(parseFloat(this.state.funds));
+									this.props.addCreditsToStore({funds: this.state.funds, type: 'add'});
 									this.props.onCancel();
 									successMessage();
 									this.clearState();
