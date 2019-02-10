@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './WithdrawFundsModal.scss';
-import { Modal, Button, Input, message } from 'antd';
+import { Modal, Button, message } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
+import NumericInput from 'react-numeric-input';
 
 class WithdrawFundsModal extends Component {
 	constructor(props) {
@@ -15,8 +16,8 @@ class WithdrawFundsModal extends Component {
 		};
 	}
 
-	saveFundsToState = (e) => {
-		this.setState({ funds: e.target.value });
+	saveFundsToState = (value) => {
+		this.setState({ funds: value });
 	};
 
 	clearState = () => {
@@ -69,7 +70,13 @@ class WithdrawFundsModal extends Component {
 					]}
 				>
 					<p>Poniżej podaj kwotę do wypłaty</p>
-					<Input onChange={(e) => this.saveFundsToState(e)} value={this.state.funds}/>
+					<NumericInput
+						className="numeric-input"
+						onChange={(value) => this.saveFundsToState(value)}
+						min={1}
+						size={30}
+						value={this.state.funds}
+					/>
 				</Modal>
 			</div>
 		);

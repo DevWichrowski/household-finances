@@ -3,6 +3,7 @@ import './AddFundsModal.scss';
 import { Modal, Button, Input, message } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits } from '../../../store/actions/balanceAction';
+import NumericInput from 'react-numeric-input';
 
 class AddFundsModal extends Component {
 	constructor(props) {
@@ -15,8 +16,8 @@ class AddFundsModal extends Component {
 		};
 	}
 
-	saveFundsToState = (e) => {
-		this.setState({ funds: e.target.value });
+	saveFundsToState = (value) => {
+		this.setState({ funds: value });
 	};
 
 	clearState = () => {
@@ -59,7 +60,7 @@ class AddFundsModal extends Component {
 					]}
 				>
 					<p>Poniżej podaj kwotę do wpłaty</p>
-					<Input onChange={this.saveFundsToState} value={this.state.funds} />
+					<NumericInput onChange={(value) => this.saveFundsToState(value)} value={this.state.funds} min={1} size={30} />
 				</Modal>
 			</div>
 		);
