@@ -1,41 +1,61 @@
 import React, { Component } from 'react';
 import './OperationsTable.scss';
-import { Table, Tag } from 'antd';
+import { Table, Tag, Button } from 'antd';
 import { connect } from 'react-redux';
 
 class OperationsTable extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			selectedRowKeys: [],
+			loading: false
+		};
+	}
+
+	start = () => {
+		this.setState({ loading: true });
+		setTimeout(() => {
+			this.setState({
+				selectedRowKeys: [],
+				loading: false
+			});
+		}, 1000);
+	};
+
+	onSelectChange = (selectedRowKeys) => {
+		console.log('selectedRowKeys changed: ', selectedRowKeys);
+		this.setState({ selectedRowKeys });
+	};
+
 	render() {
-		const dataSource = [
-			{
-				key: '1',
-				name: 'Mike',
-				age: 32,
-				address: '10 Downing Street'
-			},
-			{
-				key: '2',
-				name: 'John',
-				age: 42,
-				address: '10 Downing Street'
-			}
-		];
+		const { loading, selectedRowKeys } = this.state;
+		const rowSelection = {
+			selectedRowKeys,
+			onChange: this.onSelectChange
+		};
+		const hasSelected = selectedRowKeys.length > 0;
 
 		const columns = [
 			{
 				title: 'Typ',
 				dataIndex: 'operationType',
 				key: 'operationType',
-				render: operationType => {
+				render: (operationType) => {
 					let color = 'blue';
 					let text = null;
-						if (operationType === 'addOperation') {
-							text = 'Wpłata';
-						  color = 'green';
-						} else {
-							text = 'Wypłata';
-							color = 'volcano';
-						}
-						return <Tag color={color} key={operationType}>{text.toUpperCase()}</Tag>;
+					if (operationType === 'addOperation') {
+						text = 'Wpłata';
+						color = 'green';
+					} else {
+						text = 'Wypłata';
+						color = 'volcano';
+					}
+					return (
+						<Tag color={color} key={operationType}>
+							{text.toUpperCase()}
+						</Tag>
+					);
 				}
 			},
 			{
@@ -44,29 +64,30 @@ class OperationsTable extends Component {
 				key: 'Kategoria'
 			},
 			{
-				title: 'Data',
+				title: 'Data operacji',
 				dataIndex: 'operationDate',
 				key: 'operationDate'
 			},
 			{
-				title: 'Kwota',
+				title: 'Kwota [zł]',
 				dataIndex: `funds`,
-				key: `funds`,				
+				key: `funds`
 			}
 		];
 
 		return (
 			<div className="OperationsTable">
-				<Table dataSource={this.props.balanceInfo.operations} columns={columns} />
+				<span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
+				<Table
+					dataSource={this.props.balanceInfo.operations}
+					columns={columns}
+					description={'brak danych'}
+					pagination={{ pageSize: 5 }}
+				/>
 			</div>
 		);
 	}
 }
-
-// const mapDispatchToProps = (dispatch) => ({
-// 	addCreditsToStore: (payload) => dispatch(addCredits(payload)),
-// 	withdrawCreditsFromStore: (payload) => dispatch(withdrawCredits(payload))
-// });
 
 const mapStateToProps = (state) => ({
 	balanceInfo: state.balanceInfo

@@ -2,7 +2,13 @@ import * as BalanceAction from '../actions/balanceAction';
 
 const initialState = {
 	balance: 5000,
-	operations: []
+	operations: [
+		{
+			funds: 5000,
+			operationType: 'addOperation',
+			operationDate: '10-02-2019, 17:35'
+		}
+	]
 };
 
 export function balanceReducer(state = initialState, action) {
