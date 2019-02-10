@@ -10,7 +10,7 @@ export function balanceReducer(state = initialState, action) {
 		case BalanceAction.ADD_CREDITS: {
 			return {
 				...state,
-				balance: state.balance + action.paFyload,
+				balance: state.balance + action.payload,
 				operations: [
 					...state.operations,
 					{ funds: action.payload, operationType: action.operationType, operationDate: action.operationDate }
