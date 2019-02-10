@@ -7,6 +7,7 @@ import Saldo from './Saldo/Saldo';
 import OperationsModal from './OperationsModal/OperationsModal';
 import AddFundsModal from './AddFundsModal/AddFundsModal';
 import WithdrawFundsModal from './WithdrawFundsModal/WithdrawFundsModal';
+import OperationsTable from './OperationsTable/OperationsTable';
 
 class Balance extends Component {
 	constructor(props) {
@@ -56,7 +57,7 @@ class Balance extends Component {
 				<div className="balance-container">
 					<Saldo end={this.props.balanceInfo.balance} />
 				</div>
-
+				<OperationsTable />
 				<OperationsModal
 					visible={this.state.visible}
 					onCancel={this.handleCancel}

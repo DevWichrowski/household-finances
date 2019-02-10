@@ -1,0 +1,27 @@
+.OperationsTable {
+
+    width: 80%;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 8%;
+    
+    table {
+        width: 100%;
+    }
+
+    tr {
+        border-bottom: 1px solid black;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    th {
+        padding: 10px;
+    }
+
+    td {
+        padding: 10px;
+    }
+}
