@@ -23,8 +23,20 @@ class OperationsTable extends Component {
 		const columns = [
 			{
 				title: 'Typ',
-				dataIndex: 'funds',
-				key: 'funds'
+				dataIndex: 'operationType',
+				key: 'operationType',
+				render: operationType => {
+					let color = 'blue';
+					let text = null;
+						if (operationType === 'addOperation') {
+							text = 'Wpłata';
+						  color = 'green';
+						} else {
+							text = 'Wypłata';
+							color = 'volcano';
+						}
+						return <Tag color={color} key={operationType}>{text.toUpperCase()}</Tag>;
+				}
 			},
 			{
 				title: 'Kategoria',
