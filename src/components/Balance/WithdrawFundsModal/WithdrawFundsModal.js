@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './WithdrawFundsModal.scss';
-import { Modal, Button, InputNumber, message } from 'antd';
+import { Modal, Button, Input, message } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
 
@@ -15,8 +15,8 @@ class WithdrawFundsModal extends Component {
 		};
 	}
 
-	saveFundsToState = (value) => {
-		this.setState({ funds: value });
+	saveFundsToState = (e) => {
+		this.setState({ funds: e.target.value });
 	};
 
 	clearState = () => {
@@ -50,6 +50,7 @@ class WithdrawFundsModal extends Component {
 							type="primary"
 							loading={loading}
 							onClick={() => {
+								console.log(this.state.funds);
 								if (this.state.funds <= this.props.balanceInfo.balance) {
 									if (this.state.funds > 0) {
 										this.props.withdrawCredits(parseFloat(this.state.funds));
@@ -68,7 +69,7 @@ class WithdrawFundsModal extends Component {
 					]}
 				>
 					<p>Poniżej podaj kwotę do wypłaty</p>
-					<InputNumber onChange={() => this.saveFundsToState()} value={this.state.funds} size={'large'} />
+					<Input onChange={(e) => this.saveFundsToState(e)} value={this.state.funds}/>
 				</Modal>
 			</div>
 		);
