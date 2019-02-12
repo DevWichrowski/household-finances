@@ -19,7 +19,7 @@ class AddFundsModal extends Component {
 
 	saveCategoryToState = (value) => {
 		this.setState({ category: value });
-		console.log(`Kategoria: ${value}`);
+		console.log(`Kategoria wpłaty: ${value}`);
 	};
 
 	saveFundsToState = (value) => {

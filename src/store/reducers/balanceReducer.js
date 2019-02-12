@@ -11,7 +11,8 @@ const initialState = {
 			category: 'wypłata'
 		}
 	],
-	addCategories: [ 'bez kategori', 'wypłata', 'dług' ]
+	addCategories: [ 'bez kategori', 'wypłata', 'dług' ],
+	withdrawCategories: [ 'bez kategori', 'rachunki', 'rozrywka', 'zakupy' ]
 };
 
 export function balanceReducer(state = initialState, action) {
@@ -35,19 +36,19 @@ export function balanceReducer(state = initialState, action) {
 		case BalanceAction.WITHDRAW_CREDITS: {
 			return {
 				...state,
-				balance: state.balance - action.payload,
+				balance: state.balance - action.payload.funds,
 				operations: [
 					...state.operations,
 					{
-						funds: action.payload,
+						funds: action.payload.funds,
 						operationType: action.operationType,
 						operationDate: action.operationDate,
-						id: action.id
+						id: action.id,
+						category: action.payload.category
 					}
 				]
 			};
 		}
-
 		default: {
 			return state;
 		}
