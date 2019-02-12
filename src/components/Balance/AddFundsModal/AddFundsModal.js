@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './AddFundsModal.scss';
-import { Modal, Button, message } from 'antd';
+import { Modal, Button, message, Select } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits } from '../../../store/actions/balanceAction';
 import NumericInput from 'react-numeric-input';
@@ -12,9 +12,15 @@ class AddFundsModal extends Component {
 		this.state = {
 			loading: false,
 			visible: false,
-			funds: null
+			funds: null,
+			category: ''
 		};
 	}
+
+	saveCategoryToState = (value) => {
+		this.setState({ category: value });
+		console.log(`selected ${value}`);
+	};
 
 	saveFundsToState = (value) => {
 		this.setState({ funds: value });
@@ -28,6 +34,7 @@ class AddFundsModal extends Component {
 		const { loading } = this.state;
 		const successMessage = () => message.success(`Pomyślnie dodane ${this.state.funds} zł do konta głównego`);
 		const errorMessage = () => message.error(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
+		const Option = Select.Option;
 
 		return (
 			<div className="AddFundsModal">
@@ -60,15 +67,40 @@ class AddFundsModal extends Component {
 					]}
 				>
 					<p>Poniżej podaj kwotę do wpłaty</p>
-					<NumericInput onChange={(value) => this.saveFundsToState(value)} value={this.state.funds} min={1} size={30} />
+					<NumericInput
+						onChange={(value) => this.saveFundsToState(value)}
+						value={this.state.funds}
+						min={1}
+						size={30}
+					/>
+					<p>Wybierz kategorie</p>
+					<Select style={{ width: 120 }} onChange={this.saveCategoryToState}>
+						{this.props.balanceInfo.addCategories.map((item, index) => {
+							return (
+								<Option
+									key={index}
+									value={item}
+									// onClick={() => {
+									// 	this.setState({ category: item });
+									// }}
+								>
+									{item}
+								</Option>
+							);
+						})}
+					</Select>
 				</Modal>
 			</div>
 		);
 	}
 }
 
+const mapStateToProps = (state) => ({
+	balanceInfo: state.balanceInfo
+});
+
 const mapDispatchToProps = (dispatch) => ({
 	addCreditsToStore: (payload) => dispatch(addCredits(payload))
 });
 
-export default connect(null, mapDispatchToProps)(AddFundsModal);
+export default connect(mapStateToProps, mapDispatchToProps)(AddFundsModal);

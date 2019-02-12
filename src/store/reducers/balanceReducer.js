@@ -9,6 +9,10 @@ const initialState = {
 			operationType: 'addOperation',
 			operationDate: '10-02-2019, 17:35'
 		}
+	],
+	addCategories: [
+		'wypłata',
+		'dług'
 	]
 };
 
