@@ -7,13 +7,11 @@ const initialState = {
 			id: '_asd123eas',
 			funds: 5000,
 			operationType: 'addOperation',
-			operationDate: '10-02-2019, 17:35'
+			operationDate: '10-02-2019, 17:35',
+			category: 'wypłata'
 		}
 	],
-	addCategories: [
-		'wypłata',
-		'dług'
-	]
+	addCategories: [ 'bez kategori', 'wypłata', 'dług' ]
 };
 
 export function balanceReducer(state = initialState, action) {
@@ -21,10 +19,16 @@ export function balanceReducer(state = initialState, action) {
 		case BalanceAction.ADD_CREDITS: {
 			return {
 				...state,
-				balance: state.balance + action.payload,
+				balance: state.balance + action.payload.funds,
 				operations: [
 					...state.operations,
-					{ funds: action.payload, operationType: action.operationType, operationDate: action.operationDate, id: action.id }
+					{
+						funds: action.payload.funds,
+						operationType: action.operationType,
+						operationDate: action.operationDate,
+						id: action.id,
+						category: action.payload.category
+					}
 				]
 			};
 		}
@@ -34,7 +38,12 @@ export function balanceReducer(state = initialState, action) {
 				balance: state.balance - action.payload,
 				operations: [
 					...state.operations,
-					{ funds: action.payload, operationType: action.operationType, operationDate: action.operationDate, id: action.id}
+					{
+						funds: action.payload,
+						operationType: action.operationType,
+						operationDate: action.operationDate,
+						id: action.id
+					}
 				]
 			};
 		}

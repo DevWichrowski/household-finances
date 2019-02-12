@@ -19,7 +19,7 @@ class AddFundsModal extends Component {
 
 	saveCategoryToState = (value) => {
 		this.setState({ category: value });
-		console.log(`selected ${value}`);
+		console.log(`Kategoria: ${value}`);
 	};
 
 	saveFundsToState = (value) => {
@@ -53,7 +53,10 @@ class AddFundsModal extends Component {
 							loading={loading}
 							onClick={() => {
 								if (this.state.funds > 0) {
-									this.props.addCreditsToStore(this.state.funds);
+									this.props.addCreditsToStore({
+										funds: this.state.funds,
+										category: this.state.category
+									});
 									this.props.onCancel();
 									successMessage();
 									this.clearState();
@@ -74,16 +77,10 @@ class AddFundsModal extends Component {
 						size={30}
 					/>
 					<p>Wybierz kategorie</p>
-					<Select style={{ width: 120 }} onChange={this.saveCategoryToState}>
+					<Select style={{ width: 120 }} defaultValue="bez kategorii" onChange={this.saveCategoryToState}>
 						{this.props.balanceInfo.addCategories.map((item, index) => {
 							return (
-								<Option
-									key={index}
-									value={item}
-									// onClick={() => {
-									// 	this.setState({ category: item });
-									// }}
-								>
+								<Option key={index} value={item}>
 									{item}
 								</Option>
 							);
