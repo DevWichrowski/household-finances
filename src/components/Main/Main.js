@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import './Main.scss';
 import Balance from "../Balance/Balance";
 import {NavLink, Route} from "react-router-dom";
+import Categories from '../Categories/Categories';
 
 
 class Main extends Component {
@@ -42,10 +43,17 @@ class Main extends Component {
                             </Menu.Item>
 
                             <Menu.Item key="2">
+                                <NavLink to="/categories" />
+                                <Icon type="book"/>
+                                <span>Kategorie</span>
+                            </Menu.Item>
+
+                            <Menu.Item key="3">
                                 <Icon type="line-chart"/>
                                 <span>Historia</span>
                             </Menu.Item>
-                            <Menu.Item key="3">
+
+                            <Menu.Item key="4">
                                 <Icon type="star"/>
                                 <span>Cele</span>
                             </Menu.Item>
@@ -54,6 +62,7 @@ class Main extends Component {
                     <Layout>
                         <Content className="content">
                             <Route exact path="/" component={Balance}/>
+                            <Route path="/categories" component={Categories}/>
                         </Content>
                         <Footer style={{textAlign: 'center'}}>
                             @Author <a href="https://github.com/DevWichrowski">DevWichrowski</a>

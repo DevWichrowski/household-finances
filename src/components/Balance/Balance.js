@@ -67,8 +67,7 @@ class Balance extends Component {
 				<AddFundsModal visible={this.state.addFundsVisible} onCancel={this.handleCancel} />
 				<WithdrawFundsModal visible={this.state.withdrawFundsVisible} onCancel={this.handleCancel} />
 				<Button className="operations-button" type="primary" size={'large'} onClick={this.showModal}>
-					{' '}
-					Operacje{' '}
+					Operacje
 				</Button>
 			</div>
 		);
