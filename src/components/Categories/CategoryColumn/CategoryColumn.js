@@ -11,9 +11,10 @@ export default function CategoryColumn(props) {
 						<Icon id={`${props.arrow}`} type={`${props.arrow}`} /> <strong>Kategorie wpłat</strong>
 					</div>
 				}
-				bordered
+				itemLayout="horizontal"
 				dataSource={props.dataSource}
 				renderItem={(item) => <List.Item> {item} </List.Item>}
+				border
 			/>
 		</div>
 	);

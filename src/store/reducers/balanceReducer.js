@@ -11,7 +11,7 @@ const initialState = {
 			category: 'wypłata'
 		}
 	],
-	addCategories: [ 'bez kategori', 'wypłata', 'dług' ],
+	addCategories: [ 'bez kategori', 'wypłata', 'dług', 'prezent' ],
 	withdrawCategories: [ 'bez kategorii', 'rachunki', 'rozrywka', 'zakupy' ]
 };
 
