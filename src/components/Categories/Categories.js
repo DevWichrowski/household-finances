@@ -10,10 +10,10 @@ class Categories extends Component {
 				<h1> Kategorie operacji </h1>
 				<div className="categories-container">
 					<div className="left-column">
-						<CategoryColumn dataSource={this.props.balanceInfo.addCategories} arrow="arrow-up"/>
+						<CategoryColumn dataSource={this.props.balanceInfo.addCategories} arrow="arrow-up" />
 					</div>
 					<div className="right-column">
-                    <CategoryColumn dataSource={this.props.balanceInfo.withdrawCategories} arrow="arrow-down"/>
+						<CategoryColumn dataSource={this.props.balanceInfo.withdrawCategories} arrow="arrow-down" />
 					</div>
 				</div>
 			</div>

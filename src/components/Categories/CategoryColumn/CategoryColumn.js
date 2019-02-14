@@ -1,6 +1,6 @@
 import React from 'react';
 import './CategoryColumn.scss';
-import {List, Icon} from 'antd';
+import { List, Icon } from 'antd';
 
 export default function CategoryColumn(props) {
 	return (
