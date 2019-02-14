@@ -12,7 +12,7 @@ const initialState = {
 		}
 	],
 	addCategories: [ 'bez kategori', 'wypłata', 'dług' ],
-	withdrawCategories: [ 'bez kategori', 'rachunki', 'rozrywka', 'zakupy' ]
+	withdrawCategories: [ 'bez kategorii', 'rachunki', 'rozrywka', 'zakupy' ]
 };
 
 export function balanceReducer(state = initialState, action) {

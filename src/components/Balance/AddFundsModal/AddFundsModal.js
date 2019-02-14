@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AddFundsModal.scss';
+import '../../../styles/styles.scss';
 import { Modal, Button, message, Select } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits } from '../../../store/actions/balanceAction';
@@ -77,7 +78,7 @@ class AddFundsModal extends Component {
 						size={30}
 					/>
 					<p>Wybierz kategorie</p>
-					<Select style={{ width: 120 }} defaultValue="bez kategorii" onChange={this.saveCategoryToState}>
+					<Select className="category-select" defaultValue="bez kategorii" onChange={this.saveCategoryToState}>
 						{this.props.balanceInfo.addCategories.map((item, index) => {
 							return (
 								<Option key={index} value={item}>

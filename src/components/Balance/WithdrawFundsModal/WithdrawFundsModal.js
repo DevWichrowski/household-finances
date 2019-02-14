@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './WithdrawFundsModal.scss';
+import '../../../styles/styles.scss';
 import { Modal, Button, message, Select } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
@@ -93,9 +94,7 @@ class WithdrawFundsModal extends Component {
 					/>
 					<p> Wybierz kategorie </p>
 					<Select
-						style={{
-							width: 140
-						}}
+						className="category-select"
 						defaultValue="bez kategorii"
 						onChange={this.saveCategoryToState}
 					>
