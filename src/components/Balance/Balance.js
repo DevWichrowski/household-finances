@@ -8,6 +8,7 @@ import OperationsModal from './OperationsModal/OperationsModal';
 import AddFundsModal from './AddFundsModal/AddFundsModal';
 import WithdrawFundsModal from './WithdrawFundsModal/WithdrawFundsModal';
 import OperationsTable from './OperationsTable/OperationsTable';
+import { getBalanceSelector, selectBalance } from '../../store/selectors/balance.selectors';
 
 class Balance extends Component {
 	constructor(props) {
@@ -55,7 +56,7 @@ class Balance extends Component {
 		return (
 			<div className="Balance">
 				<div className="balance-container">
-					<Saldo end={this.props.balanceInfo.balance} />
+					<Saldo end={this.props.balance} />
 				</div>
 				<OperationsTable />
 				<OperationsModal
@@ -80,7 +81,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-	balanceInfo: state.balanceInfo
+	balanceInfo: state.balanceInfo,
+	balance: getBalanceSelector(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Balance);
