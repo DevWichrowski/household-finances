@@ -15,7 +15,7 @@ class AddFundsModal extends Component {
 			loading: false,
 			visible: false,
 			funds: null,
-			category: ''
+			category: 'Bez kategorii'
 		};
 	}
 
