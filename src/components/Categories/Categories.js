@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Categories.scss';
 import CategoryColumn from './CategoryColumn/CategoryColumn';
 import { connect } from 'react-redux';
+import { getAddCategoriesSelector, getWithdrawSelector } from '../../store/selectors/balance.selectors';
 
 class Categories extends Component {
 	render() {
@@ -10,10 +11,10 @@ class Categories extends Component {
 				<h1> Kategorie operacji </h1>
 				<div className="categories-container">
 					<div className="left-column">
-						<CategoryColumn dataSource={this.props.balanceInfo.addCategories} arrow="arrow-up" />
+						<CategoryColumn dataSource={this.props.addCategories} arrow="arrow-up" />
 					</div>
 					<div className="right-column">
-						<CategoryColumn dataSource={this.props.balanceInfo.withdrawCategories} arrow="arrow-down" />
+						<CategoryColumn dataSource={this.props.withdrawCategories} arrow="arrow-down" />
 					</div>
 				</div>
 			</div>
@@ -22,7 +23,8 @@ class Categories extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	balanceInfo: state.balanceInfo
+	addCategories: getAddCategoriesSelector(state),
+	withdrawCategories: getWithdrawSelector(state)
 });
 
 export default connect(mapStateToProps, null)(Categories);

@@ -5,6 +5,7 @@ import { Modal, Button, message, Select } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits } from '../../../store/actions/balanceAction';
 import NumericInput from 'react-numeric-input';
+import { getAddCategoriesSelector } from '../../../store/selectors/balance.selectors';
 
 class AddFundsModal extends Component {
 	constructor(props) {
@@ -79,7 +80,7 @@ class AddFundsModal extends Component {
 					/>
 					<p>Wybierz kategorie</p>
 					<Select className="category-select" defaultValue="bez kategorii" onChange={this.saveCategoryToState}>
-						{this.props.balanceInfo.addCategories.map((item, index) => {
+						{this.props.addCategories.map((item, index) => {
 							return (
 								<Option key={index} value={item}>
 									{item}
@@ -94,7 +95,7 @@ class AddFundsModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	balanceInfo: state.balanceInfo
+	addCategories: getAddCategoriesSelector(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

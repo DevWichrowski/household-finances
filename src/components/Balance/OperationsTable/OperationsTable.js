@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './OperationsTable.scss';
 import { Table, Tag} from 'antd';
 import { connect } from 'react-redux';
+import { getOperationsSelector } from '../../../store/selectors/balance.selectors';
 
 class OperationsTable extends Component {
 	constructor(props) {
@@ -76,7 +77,7 @@ class OperationsTable extends Component {
 				<span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
 				<Table
 					rowKey={'id'}
-					dataSource={this.props.balanceInfo.operations}
+					dataSource={this.props.operations}
 					columns={columns}
 					description={'brak danych'}
 					pagination={{ pageSize: 5 }}
@@ -87,7 +88,7 @@ class OperationsTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	balanceInfo: state.balanceInfo
+	operations: getOperationsSelector(state),
 });
 
 export default connect(mapStateToProps, null)(OperationsTable);

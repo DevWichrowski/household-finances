@@ -5,6 +5,7 @@ import { Modal, Button, message, Select } from 'antd';
 import { connect } from 'react-redux';
 import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
 import NumericInput from 'react-numeric-input';
+import { getBalanceSelector, getWithdrawSelector } from '../../../store/selectors/balance.selectors';
 
 class WithdrawFundsModal extends Component {
 	constructor(props) {
@@ -64,7 +65,7 @@ class WithdrawFundsModal extends Component {
 							loading={loading}
 							onClick={() => {
 								console.log(this.state.funds);
-								if (this.state.funds <= this.props.balanceInfo.balance) {
+								if (this.state.funds <= this.props.balance) {
 									if (this.state.funds > 0) {
 										this.props.withdrawCredits({
 											funds: this.state.funds,
@@ -98,7 +99,7 @@ class WithdrawFundsModal extends Component {
 						defaultValue="bez kategorii"
 						onChange={this.saveCategoryToState}
 					>
-						{this.props.balanceInfo.withdrawCategories.map((item, index) => {
+						{this.props.withdrawCategories.map((item, index) => {
 							return (
 								<Option key={index} value={item}>
 									{item}
@@ -118,7 +119,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-	balanceInfo: state.balanceInfo
+	balance: getBalanceSelector(state),
+	withdrawCategories: getWithdrawSelector(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WithdrawFundsModal);
