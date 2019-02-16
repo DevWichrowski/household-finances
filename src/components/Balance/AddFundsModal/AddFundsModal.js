@@ -79,7 +79,7 @@ class AddFundsModal extends Component {
 						size={30}
 					/>
 					<p>Wybierz kategorie</p>
-					<Select className="category-select" defaultValue="bez kategorii" onChange={this.saveCategoryToState}>
+					<Select className="category-select" defaultValue="Bez kategorii" onChange={this.saveCategoryToState}>
 						{this.props.addCategories.map((item, index) => {
 							return (
 								<Option key={index} value={item}>

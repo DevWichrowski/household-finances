@@ -8,11 +8,11 @@ const initialState = {
 			funds: 5000,
 			operationType: 'addOperation',
 			operationDate: '10-02-2019, 17:35',
-			category: 'wypłata'
+			category: 'Wynagrodzenie'
 		}
 	],
-	addCategories: [ 'bez kategori', 'wypłata', 'dług', 'prezent' ],
-	withdrawCategories: [ 'bez kategorii', 'rachunki', 'rozrywka', 'zakupy' ]
+	addCategories: [ 'Bez kategorii', 'Wynagrodzenie', 'Oddany dług', 'Prezent', 'Sprzedaż' ],
+	withdrawCategories: [ 'Bez kategorii', 'Rachunki', 'Rozrywka', 'Zakupy', 'Naprawa' ]
 };
 
 export function balanceReducer(state = initialState, action) {

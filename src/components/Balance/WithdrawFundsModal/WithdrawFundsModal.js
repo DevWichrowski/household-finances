@@ -96,7 +96,7 @@ class WithdrawFundsModal extends Component {
 					<p> Wybierz kategorie </p>
 					<Select
 						className="category-select"
-						defaultValue="bez kategorii"
+						defaultValue="Bez kategorii"
 						onChange={this.saveCategoryToState}
 					>
 						{this.props.withdrawCategories.map((item, index) => {

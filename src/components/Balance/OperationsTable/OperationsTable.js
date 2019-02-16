@@ -57,8 +57,8 @@ class OperationsTable extends Component {
 			},
 			{
 				title: 'Kategoria',
-				dataIndex: 'Kategoria',
-				key: 'Kategoria'
+				dataIndex: 'category',
+				key: 'category'
 			},
 			{
 				title: 'Data operacji',
