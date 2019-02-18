@@ -3,6 +3,7 @@ import './Categories.scss';
 import CategoryColumn from './CategoryColumn/CategoryColumn';
 import { connect } from 'react-redux';
 import { getAddCategoriesSelector, getWithdrawSelector } from '../../store/selectors/balance.selectors';
+import { Button } from 'antd';
 
 class Categories extends Component {
 	render() {
@@ -17,6 +18,9 @@ class Categories extends Component {
 						<CategoryColumn dataSource={this.props.withdrawCategories} arrow="arrow-down" />
 					</div>
 				</div>
+				<Button className="add-category-button" type="primary" size={'large'}>
+					Dodaj kategorię
+				</Button>
 			</div>
 		);
 	}

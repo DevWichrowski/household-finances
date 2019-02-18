@@ -1,20 +1,29 @@
 .Categories {
 
+
+    .add-category-button {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 5%;
+        margin-right: 5%;
+    }
+
     .categories-container {
         justify-content: center;
         display: flex;
         width: 100%;
         flex-direction: row;
         margin: 0 auto;
-        
-        .left-column{
+
+        .left-column {
             width: 40%;
         }
 
-        .right-column{
+        .right-column {
             width: 40%;
         }
     }
 
-    
+
 }
