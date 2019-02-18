@@ -31,31 +31,34 @@ class CategoryModal extends Component {
 	};
 
 	addNewCategory = () => {
-		if (this.state.categoryName !== '') {
-			if (
-				this.state.categoryType === 'addCategory' &&
-				!this.props.addCategories.includes(this.state.categoryName) 
-			) {
+		switch (true) {
+			case this.state.categoryName === '': {
+				message.error('Nie udało się dodać kategorii');
+			}
+			case this.state.categoryType === 'addCategory' &&
+				!this.props.addCategories.includes(this.state.categoryName): {
 				this.props.newAddCategory(this.state.categoryName);
 				message.success(`Pomyślnie dodano nową kategorie wpłaty: [${this.state.categoryName}]`);
 				this.props.onCancel();
 				this.setState({ categoryName: '' });
-			} else if (
-				this.state.categoryType === 'withdrawCategory' &&
-				!this.props.withdrawCategories.includes(this.state.categoryName)
-			) {
+				break;
+			}
+			case this.state.categoryType === 'withdrawCategory' &&
+				!this.props.withdrawCategories.includes(this.state.categoryName): {
 				this.props.newWithdrawCategory(this.state.categoryName);
 				message.success(`Pomyślnie dodano nową kategorie wypłaty: [${this.state.categoryName}]`);
 				this.props.onCancel();
 				this.setState({ categoryName: '' });
-			} else if (
-				this.props.addCategories.includes(this.state.categoryName) ||
-				!this.props.withdrawCategories.includes(this.state.categoryName)
-			) {
-				message.error(`Kategoria [${this.state.categoryName}] już istnieje.`);
+				break;
 			}
-		} else {
-			message.error(`Nie udało się dodać kategorii :(`);
+			case this.props.addCategories.includes(this.state.categoryName) ||
+				this.props.withdrawCategories.includes(this.state.categoryName): {
+				message.error(`Kategoria [${this.state.categoryName}] już istnieje.`);
+				break;
+			}
+			default: {
+				break;
+			}
 		}
 	};
 
