@@ -49,6 +49,12 @@ export function balanceReducer(state = initialState, action) {
 				]
 			};
 		}
+		case BalanceAction.NEW_ADD_CATEGORY: {
+			return { ...state, addCategories: [ ...state.addCategories, action.payload ] };
+		}
+		case BalanceAction.NEW_WITHDRAW_CATAGORY: {
+			return { ...state, withdrawCategories: [ ...state.withdrawCategories, action.payload ] };
+		}
 		default: {
 			return state;
 		}

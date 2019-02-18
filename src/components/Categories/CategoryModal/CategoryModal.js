@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Modal, Button, Radio, Input } from 'antd';
+import { newAddCategory, newWithdrawCategory } from '../../../store/actions/balanceAction';
+import { connect } from 'react-redux';
 
-export default class CategoryModal extends Component {
+class CategoryModal extends Component {
 	constructor(props) {
 		super(props);
 
@@ -27,6 +29,18 @@ export default class CategoryModal extends Component {
 		console.log(this.state.categoryName);
 	};
 
+	addNewCategory = () => {
+		if (this.state.categoryName !== '') {
+			if (this.state.categoryType === 'addCategory') {
+				this.props.newAddCategory(this.state.categoryName);
+			} else if (this.state.categoryType === 'withdrawCategory') {
+			this.props.newWithdrawCategory(this.state.categoryName);
+			}
+		} else {
+			console.log("CategoryName is equal to '' ");
+		}
+	};
+
 	render() {
 		const { loading } = this.state;
 
@@ -41,7 +55,7 @@ export default class CategoryModal extends Component {
 						<Button key="back" onClick={this.props.onCancel}>
 							Zamknij
 						</Button>,
-						<Button key="submit" type="primary" loading={loading}>
+						<Button key="submit" type="primary" loading={loading} onClick={this.addNewCategory}>
 							Dodaj
 						</Button>
 					]}
@@ -61,3 +75,10 @@ export default class CategoryModal extends Component {
 		);
 	}
 }
+
+const mapDispatchToProps = (dispatch) => ({
+	newAddCategory: (payload) => dispatch(newAddCategory(payload)),
+	newWithdrawCategory: (payload) => dispatch(newWithdrawCategory(payload))
+});
+
+export default connect(null, mapDispatchToProps)(CategoryModal);
