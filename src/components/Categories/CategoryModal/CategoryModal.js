@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal, Button, Radio } from 'antd';
 
 export default class CategoryModal extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			loading: false
+			loading: false,
+			category: '',
+			categoryType: 'addCategory'
 		};
 	}
+
+	switchToAddCategory = () => {
+		this.setState({ categoryType: 'addCategory' });
+		console.log('Switchted to: [add category]');
+	};
+
+	switchToWithdrawCategory = () => {
+		this.setState({ categoryType: 'withdrawCategory' });
+		console.log('Switchted to: [withdraw category]');
+	};
 
 	render() {
 		const { loading } = this.state;
@@ -28,7 +40,16 @@ export default class CategoryModal extends Component {
 							Dodaj
 						</Button>
 					]}
-				/>
+				>
+					<Radio.Group defaultValue="addCategory" buttonStyle="solid">
+						<Radio.Button value="addCategory" onClick={this.switchToAddCategory}>
+							Nowa kategoria wpłaty
+						</Radio.Button>
+						<Radio.Button value="withdrawCategory" onClick={this.switchToWithdrawCategory}>
+							Nowa kategoria wypłaty
+						</Radio.Button>
+					</Radio.Group>
+				</Modal>
 			</div>
 		);
 	}
