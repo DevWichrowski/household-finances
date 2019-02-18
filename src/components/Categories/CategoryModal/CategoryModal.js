@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Radio, Input } from 'antd';
+import { Modal, Button, Radio, Input, message } from 'antd';
 import { newAddCategory, newWithdrawCategory } from '../../../store/actions/balanceAction';
 import { connect } from 'react-redux';
 
@@ -33,11 +33,17 @@ class CategoryModal extends Component {
 		if (this.state.categoryName !== '') {
 			if (this.state.categoryType === 'addCategory') {
 				this.props.newAddCategory(this.state.categoryName);
+				message.success(`Pomyślnie dodano nową kategorie wpłaty: [${this.state.categoryName}]`);
+				this.props.onCancel();
+				this.setState({ categoryName: '' });
 			} else if (this.state.categoryType === 'withdrawCategory') {
-			this.props.newWithdrawCategory(this.state.categoryName);
+				this.props.newWithdrawCategory(this.state.categoryName);
+				message.success(`Pomyślnie dodano nową kategorie wypłaty: [${this.state.categoryName}]`);
+				this.props.onCancel();
+				this.setState({ categoryName: '' });
 			}
 		} else {
-			console.log("CategoryName is equal to '' ");
+			message.error(`Nie udało się dodać kategorii :(`);
 		}
 	};
 
@@ -60,8 +66,8 @@ class CategoryModal extends Component {
 						</Button>
 					]}
 				>
-					<p> Podaj tytuł nowej kategorii</p>
-					<Input onChange={this.saveCategoryName} />
+					<p> Podaj tytuł nowej kategorii:</p>
+					<Input onChange={this.saveCategoryName} value={this.state.categoryName} />
 					<Radio.Group defaultValue="addCategory" buttonStyle="solid">
 						<Radio.Button value="addCategory" onClick={this.switchToAddCategory}>
 							Nowa kategoria wpłaty
