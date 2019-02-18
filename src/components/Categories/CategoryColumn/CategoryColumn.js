@@ -14,7 +14,6 @@ export default function CategoryColumn(props) {
 				itemLayout="horizontal"
 				dataSource={props.dataSource}
 				renderItem={(item) => <List.Item> {item} </List.Item>}
-				border
 			/>
 		</div>
 	);
