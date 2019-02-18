@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Radio } from 'antd';
+import { Modal, Button, Radio, Input } from 'antd';
 
 export default class CategoryModal extends Component {
 	constructor(props) {
@@ -7,7 +7,7 @@ export default class CategoryModal extends Component {
 
 		this.state = {
 			loading: false,
-			category: '',
+			categoryName: '',
 			categoryType: 'addCategory'
 		};
 	}
@@ -20,6 +20,11 @@ export default class CategoryModal extends Component {
 	switchToWithdrawCategory = () => {
 		this.setState({ categoryType: 'withdrawCategory' });
 		console.log('Switchted to: [withdraw category]');
+	};
+
+	saveCategoryName = (e) => {
+		this.setState({ categoryName: e.target.value });
+		console.log(this.state.categoryName);
 	};
 
 	render() {
@@ -41,6 +46,8 @@ export default class CategoryModal extends Component {
 						</Button>
 					]}
 				>
+					<p> Podaj tytuł nowej kategorii</p>
+					<Input onChange={this.saveCategoryName} />
 					<Radio.Group defaultValue="addCategory" buttonStyle="solid">
 						<Radio.Button value="addCategory" onClick={this.switchToAddCategory}>
 							Nowa kategoria wpłaty
