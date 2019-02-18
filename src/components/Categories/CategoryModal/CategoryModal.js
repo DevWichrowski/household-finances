@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Button, Radio, Input, message } from 'antd';
 import { newAddCategory, newWithdrawCategory } from '../../../store/actions/balanceAction';
 import { connect } from 'react-redux';
+import { getWithdrawSelector, getAddCategoriesSelector } from '../../../store/selectors/balance.selectors';
 
 class CategoryModal extends Component {
 	constructor(props) {
@@ -31,16 +32,27 @@ class CategoryModal extends Component {
 
 	addNewCategory = () => {
 		if (this.state.categoryName !== '') {
-			if (this.state.categoryType === 'addCategory') {
+			if (
+				this.state.categoryType === 'addCategory' &&
+				!this.props.addCategories.includes(this.state.categoryName) 
+			) {
 				this.props.newAddCategory(this.state.categoryName);
 				message.success(`Pomyślnie dodano nową kategorie wpłaty: [${this.state.categoryName}]`);
 				this.props.onCancel();
 				this.setState({ categoryName: '' });
-			} else if (this.state.categoryType === 'withdrawCategory') {
+			} else if (
+				this.state.categoryType === 'withdrawCategory' &&
+				!this.props.withdrawCategories.includes(this.state.categoryName)
+			) {
 				this.props.newWithdrawCategory(this.state.categoryName);
 				message.success(`Pomyślnie dodano nową kategorie wypłaty: [${this.state.categoryName}]`);
 				this.props.onCancel();
 				this.setState({ categoryName: '' });
+			} else if (
+				this.props.addCategories.includes(this.state.categoryName) ||
+				!this.props.withdrawCategories.includes(this.state.categoryName)
+			) {
+				message.error(`Kategoria [${this.state.categoryName}] już istnieje.`);
 			}
 		} else {
 			message.error(`Nie udało się dodać kategorii :(`);
@@ -82,9 +94,14 @@ class CategoryModal extends Component {
 	}
 }
 
+const mapStateToProps = (state) => ({
+	addCategories: getAddCategoriesSelector(state),
+	withdrawCategories: getWithdrawSelector(state)
+});
+
 const mapDispatchToProps = (dispatch) => ({
 	newAddCategory: (payload) => dispatch(newAddCategory(payload)),
 	newWithdrawCategory: (payload) => dispatch(newWithdrawCategory(payload))
 });
 
-export default connect(null, mapDispatchToProps)(CategoryModal);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryModal);
