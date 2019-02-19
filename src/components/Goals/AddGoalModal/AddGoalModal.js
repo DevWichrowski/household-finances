@@ -22,6 +22,11 @@ export default class AddGoalModal extends Component {
 		console.log(this.state.goalFunds);
 	};
 
+	addGoal = () => {
+		this.setState({ goalTitle: '', goalFunds: null });
+		this.props.onCancel();
+	};
+
 	render() {
 		const { loading } = this.state;
 		return (
@@ -34,14 +39,14 @@ export default class AddGoalModal extends Component {
 						<Button key="back" onClick={this.props.onCancel}>
 							Zamknij
 						</Button>,
-						<Button key="submit" type="primary" loading={loading} onClick={this.props.onCancel}>
+						<Button key="submit" type="primary" loading={loading} onClick={() => this.addGoal()}>
 							Dodaj cel
 						</Button>
 					]}
 				>
 					<div>
 						<p>Podaj nazwe celu</p>
-						<Input onChange={this.saveGoalTitle} />
+						<Input onChange={this.saveGoalTitle} value={this.state.goalTitle} />
 					</div>
 					<div>
 						<p>Podaj sumę na osiągnięcie celu:</p>
