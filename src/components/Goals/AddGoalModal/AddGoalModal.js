@@ -6,22 +6,32 @@ export default class AddGoalModal extends Component {
 		super(props);
 
 		this.state = {
-            goalTitle: '',
-            goalFunds: null,
-        };
+			goalTitle: '',
+			goalFunds: null
+		};
 	}
+
+	saveGoalTitle = (e) => {
+		this.setState({ goalTitle: e.target.value });
+		console.log(this.state.goalTitle);
+	};
+
+	saveGoalFunds = (e) => {
+		this.setState({ goalFunds: e.target.value });
+		console.log(this.state.goalFunds);
+	};
 
 	render() {
 		return (
 			<div className="AddGoalModal">
 				<Modal title="Dodaj nowy cel" visible={this.props.visible} onCancel={this.props.onCancel}>
-					<div >
+					<div>
 						<p>Podaj nazwe celu</p>
-						<Input />
+						<Input onChange={this.saveGoalTitle} />
 					</div>
 					<div>
 						<p>Podaj sumę na osiągnięcie celu:</p>
-						<Input />
+						<Input onChange={this.saveGoalFunds} />
 					</div>
 				</Modal>
 			</div>
