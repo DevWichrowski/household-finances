@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './AddFundsModal.scss';
 import '../../../styles/styles.scss';
 import { Modal, Button, message, Select } from 'antd';
 import { connect } from 'react-redux';

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CategoryModal.scss';
 import { Modal, Button, Radio, Input, message } from 'antd';
 import { newAddCategory, newWithdrawCategory } from '../../../store/actions/balanceAction';
 import { connect } from 'react-redux';
