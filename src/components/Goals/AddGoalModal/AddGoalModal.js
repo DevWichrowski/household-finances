@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Input } from 'antd';
+import { Modal, Input, Button } from 'antd';
+import NumericInput from 'react-numeric-input';
 
 export default class AddGoalModal extends Component {
 	constructor(props) {
@@ -16,22 +17,40 @@ export default class AddGoalModal extends Component {
 		console.log(this.state.goalTitle);
 	};
 
-	saveGoalFunds = (e) => {
-		this.setState({ goalFunds: e.target.value });
+	saveGoalFunds = (value) => {
+		this.setState({ goalFunds: value });
 		console.log(this.state.goalFunds);
 	};
 
 	render() {
+		const { loading } = this.state;
 		return (
 			<div className="AddGoalModal">
-				<Modal title="Dodaj nowy cel" visible={this.props.visible} onCancel={this.props.onCancel}>
+				<Modal
+					title="Dodaj nowy cel"
+					visible={this.props.visible}
+					onCancel={this.props.onCancel}
+					footer={[
+						<Button key="back" onClick={this.props.onCancel}>
+							Zamknij
+						</Button>,
+						<Button key="submit" type="primary" loading={loading} onClick={this.props.onCancel}>
+							Dodaj cel
+						</Button>
+					]}
+				>
 					<div>
 						<p>Podaj nazwe celu</p>
 						<Input onChange={this.saveGoalTitle} />
 					</div>
 					<div>
 						<p>Podaj sumę na osiągnięcie celu:</p>
-						<Input onChange={this.saveGoalFunds} />
+						<NumericInput
+							onChange={(value) => this.saveGoalFunds(value)}
+							value={this.state.goalFunds}
+							min={1}
+							size={30}
+						/>
 					</div>
 				</Modal>
 			</div>
