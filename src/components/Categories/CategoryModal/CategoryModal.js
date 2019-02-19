@@ -34,6 +34,7 @@ class CategoryModal extends Component {
 		switch (true) {
 			case this.state.categoryName === '': {
 				message.error('Nie udało się dodać kategorii');
+				break;
 			}
 			case this.state.categoryType === 'addCategory' &&
 				!this.props.addCategories.includes(this.state.categoryName): {
