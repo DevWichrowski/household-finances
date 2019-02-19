@@ -31,29 +31,40 @@ class CategoryModal extends Component {
 	};
 
 	addNewCategory = () => {
+		let addCategoriesLowerCase = [];
+		let withdrawCategoriesLowerCase = [];
+		const categoryNameToLower = this.state.categoryName.toLowerCase();
+
+		this.props.addCategories.map((category) => {
+			return (addCategoriesLowerCase = [ ...addCategoriesLowerCase, category.toLowerCase() ]);
+		});
+
+		this.props.withdrawCategories.map((category) => {
+			return (withdrawCategoriesLowerCase = [ ...withdrawCategoriesLowerCase, category.toLowerCase() ]);
+		});
+
 		switch (true) {
 			case this.state.categoryName === '': {
 				message.error('Nie udało się dodać kategorii');
 				break;
 			}
-			case this.state.categoryType === 'addCategory' &&
-				!this.props.addCategories.includes(this.state.categoryName): {
-				this.props.newAddCategory(this.state.categoryName);
+			case this.state.categoryType === 'addCategory' && !addCategoriesLowerCase.includes(categoryNameToLower): {
+				this.props.newAddCategory(categoryNameToLower);
 				message.success(`Pomyślnie dodano nową kategorie wpłaty: [${this.state.categoryName}]`);
 				this.props.onCancel();
 				this.setState({ categoryName: '' });
 				break;
 			}
 			case this.state.categoryType === 'withdrawCategory' &&
-				!this.props.withdrawCategories.includes(this.state.categoryName): {
-				this.props.newWithdrawCategory(this.state.categoryName);
+				!withdrawCategoriesLowerCase.includes(categoryNameToLower): {
+				this.props.newWithdrawCategory(categoryNameToLower);
 				message.success(`Pomyślnie dodano nową kategorie wypłaty: [${this.state.categoryName}]`);
 				this.props.onCancel();
 				this.setState({ categoryName: '' });
 				break;
 			}
-			case this.props.addCategories.includes(this.state.categoryName) ||
-				this.props.withdrawCategories.includes(this.state.categoryName): {
+			case addCategoriesLowerCase.includes(categoryNameToLower) ||
+				withdrawCategoriesLowerCase.includes(categoryNameToLower): {
 				message.error(`Kategoria [${this.state.categoryName}] już istnieje.`);
 				break;
 			}
