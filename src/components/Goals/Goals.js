@@ -31,7 +31,7 @@ class Goals extends Component {
 	render() {
 		return (
 			<div className="Goals">
-				<h1>Goals</h1>
+				<h1>Cele</h1>
 
 				<Button className="add-goal-button" type="primary" size={'large'} onClick={this.showModal}>
 					Dodaj cel
@@ -40,7 +40,7 @@ class Goals extends Component {
 				{this.props.goals.map((goal, index) => {
 					return (
 						<div key={index}>
-							<Goal />
+							<Goal title={goal.goalTitle} fundsToSuccess={goal.fundsNeeded}/>
 						</div>
 					);
 				})}

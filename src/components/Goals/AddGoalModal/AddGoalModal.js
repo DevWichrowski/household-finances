@@ -25,7 +25,7 @@ class AddGoalModal extends Component {
 	};
 
 	addGoal = () => {
-		this.props.addGoal({ goalTitle: this.state.goalTitle, fundsNeeded: this.state.goalFunds });
+		this.props.addGoal({ goalTitle: this.state.goalTitle, fundsNeeded: this.state.goalFunds});
 		this.setState({ goalTitle: '', goalFunds: null });
 		this.props.onCancel();
 	};
