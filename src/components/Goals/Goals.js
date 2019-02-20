@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import AddGoalModal from './AddGoalModal/AddGoalModal';
 import Goal from './Goal/Goal';
 import { getGoalsSelector } from '../../store/selectors/goals.selector';
+import { deleteGoal } from '../../store/actions/goalsAction';
 
 class Goals extends Component {
 	constructor(props) {
@@ -40,7 +41,13 @@ class Goals extends Component {
 				{this.props.goals.map((goal, index) => {
 					return (
 						<div key={index}>
-							<Goal title={goal.goalTitle} fundsToSuccess={goal.fundsNeeded}/>
+							<Goal
+								id={goal.id}
+								title={goal.goalTitle}
+								fundsToSuccess={goal.fundsNeeded}
+								currentFunds={goal.currentFunds}
+								deleteGoal={() => this.props.deleteGoal(goal.id)}
+							/>
 						</div>
 					);
 				})}
@@ -53,6 +60,8 @@ const mapStateToProps = (state) => ({
 	goals: getGoalsSelector(state)
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+	deleteGoal: (payload) => dispatch(deleteGoal(payload))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Goals);

@@ -1,7 +1,7 @@
 import * as GoalsAction from '../actions/goalsAction';
 
 const initialState = {
-	goals: [ { goalTitle: 'Na motocykl', fundsNeeded: 1000, currentFunds: 100, } ]
+	goals: [ { id: '_aweq13221', goalTitle: 'Na motocykl', fundsNeeded: 1000, currentFunds: 100 } ]
 };
 
 export function goalsReducer(state = initialState, action) {
@@ -12,12 +12,17 @@ export function goalsReducer(state = initialState, action) {
 				goals: [
 					...state.goals,
 					{
+						id: action.id,
 						goalTitle: action.payload.goalTitle,
 						fundsNeeded: action.payload.fundsNeeded,
 						currentFunds: action.currentFunds
 					}
 				]
 			};
+		}
+
+		case GoalsAction.DELETE_GOAL: {
+			return { ...state, goals: state.goals.filter((goal) => goal.id !== action.payload) };
 		}
 
 		default: {
