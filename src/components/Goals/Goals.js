@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Goals.scss';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import AddGoalModal from './AddGoalModal/AddGoalModal';
 import Goal from './Goal/Goal';
 import { getGoalsSelector } from '../../store/selectors/goals.selector';
@@ -29,6 +29,11 @@ class Goals extends Component {
 		});
 	};
 
+	deleteGoal = (id, title) =>{
+		this.props.deleteGoal(id);
+		message.success(`Usunięto cel: [${title}]`)
+	}
+
 	render() {
 		return (
 			<div className="Goals">
@@ -46,7 +51,7 @@ class Goals extends Component {
 								title={goal.goalTitle}
 								fundsToSuccess={goal.fundsNeeded}
 								currentFunds={goal.currentFunds}
-								deleteGoal={() => this.props.deleteGoal(goal.id)}
+								deleteGoal={() => this.deleteGoal(goal.id, goal.goalTitle)}
 							/>
 						</div>
 					);
