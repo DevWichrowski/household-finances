@@ -39,7 +39,7 @@ class Goals extends Component {
 				<AddGoalModal visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} />
 				{this.props.goals.map((goal, index) => {
 					return (
-						<div>
+						<div key={index}>
 							<Goal />
 						</div>
 					);
