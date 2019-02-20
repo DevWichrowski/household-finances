@@ -29,10 +29,10 @@ class Goals extends Component {
 		});
 	};
 
-	deleteGoal = (id, title) =>{
+	deleteGoal = (id, title) => {
 		this.props.deleteGoal(id);
-		message.success(`Usunięto cel: [${title}]`)
-	}
+		message.success(`Usunięto cel: [${title}]`);
+	};
 
 	render() {
 		return (
