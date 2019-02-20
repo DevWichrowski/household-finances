@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import './Goals.scss';
 import { Button } from 'antd';
 import AddGoalModal from './AddGoalModal/AddGoalModal';
+import Goal from './Goal/Goal';
+import { getGoalsSelector } from '../../store/selectors/goals.selector';
 
 class Goals extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			visible: false,
+			visible: false
 		};
 	}
 
@@ -34,13 +36,22 @@ class Goals extends Component {
 				<Button className="add-goal-button" type="primary" size={'large'} onClick={this.showModal}>
 					Dodaj cel
 				</Button>
-                <AddGoalModal visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel}/>
+				<AddGoalModal visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} />
+				{this.props.goals.map((goal, index) => {
+					return (
+						<div>
+							<Goal />
+						</div>
+					);
+				})}
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+	goals: getGoalsSelector(state)
+});
 
 const mapDispatchToProps = {};
 

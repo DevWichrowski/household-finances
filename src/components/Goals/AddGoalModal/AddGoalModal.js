@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Modal, Input, Button } from 'antd';
 import NumericInput from 'react-numeric-input';
+import { connect } from 'react-redux';
+import { addGoal } from '../../../store/actions/goalsAction';
 
-export default class AddGoalModal extends Component {
+class AddGoalModal extends Component {
 	constructor(props) {
 		super(props);
 
@@ -23,6 +25,7 @@ export default class AddGoalModal extends Component {
 	};
 
 	addGoal = () => {
+		this.props.addGoal({ goalTitle: this.state.goalTitle, fundsNeeded: this.state.goalFunds });
 		this.setState({ goalTitle: '', goalFunds: null });
 		this.props.onCancel();
 	};
@@ -62,3 +65,9 @@ export default class AddGoalModal extends Component {
 		);
 	}
 }
+
+const mapDispatchToProps = (dispatch) => ({
+	addGoal: (payload) => dispatch(addGoal(payload))
+});
+
+export default connect(null, mapDispatchToProps)(AddGoalModal);
