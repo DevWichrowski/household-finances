@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Progress } from 'antd';
+import './Goal.scss';
 
 export default class Goal extends Component {
 	render() {
