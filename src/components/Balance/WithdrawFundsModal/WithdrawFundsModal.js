@@ -80,7 +80,7 @@ class WithdrawFundsModal extends Component {
 								}
 							}}
 						>
-							Wypłać{' '}
+							Wypłać
 						</Button>
 					]}
 				>
