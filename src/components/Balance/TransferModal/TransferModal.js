@@ -12,14 +12,21 @@ class TransferModal extends Component {
 
 		this.state = {
 			loading: false,
-			funds: null
+      funds: null,
+      goalTitle: null,
+      goalId: null,
 		};
 	}
 
 	saveFunds = (value) => {
 		this.setState({ funds: value });
 		console.log(this.state.funds);
-	};
+  };
+  
+  saveGoalTitleID = (title, id) => {
+    this.setState({goalTitle: title, goalId: id});
+    console.log(`Title: ${this.state.goalTitle}, ID: ${this.state.goalId}`);
+  }
 
 	render() {
 		const { loading } = this.state;
@@ -54,7 +61,7 @@ class TransferModal extends Component {
             
             {this.props.goals.map((item, index) => {
 							return (
-								<Option key={index}>
+								<Option key={index} onClick={() => this.saveGoalTitleID(item.goalTitle, item.id)}>
 									{item.goalTitle}
 								</Option>
 							);
