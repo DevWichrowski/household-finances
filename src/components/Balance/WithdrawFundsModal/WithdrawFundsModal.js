@@ -56,7 +56,7 @@ class WithdrawFundsModal extends Component {
 					onCancel={this.props.onCancel}
 					footer={[
 						<Button key="back" onClick={this.props.onCancel}>
-							Zamknij{' '}
+							Zamknij
 						</Button>,
 						<Button
 							key="submit"

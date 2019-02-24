@@ -9,6 +9,7 @@ import AddFundsModal from './AddFundsModal/AddFundsModal';
 import WithdrawFundsModal from './WithdrawFundsModal/WithdrawFundsModal';
 import OperationsTable from './OperationsTable/OperationsTable';
 import { getBalanceSelector } from '../../store/selectors/balance.selectors';
+import TransferModal from './TransferModal/TransferModal';
 
 class Balance extends Component {
 	constructor(props) {
@@ -17,7 +18,8 @@ class Balance extends Component {
 		this.state = {
 			visible: false,
 			addFundsVisible: false,
-			withdrawFundsVisible: false
+			withdrawFundsVisible: false,
+			transferModalVisible: false,
 		};
 	}
 
@@ -43,12 +45,21 @@ class Balance extends Component {
 		console.log('showAddModal');
 	};
 
+	showTransferModal = () => {
+		this.setState({
+			transferModalVisible: true,
+			visible: false
+		});
+		console.log('TransferModal');
+	};
+
 	handleCancel = (e) => {
 		console.log(e);
 		this.setState({
 			visible: false,
 			addFundsVisible: false,
-			withdrawFundsVisible: false
+			withdrawFundsVisible: false,
+			transferModalVisible: false
 		});
 	};
 
@@ -64,9 +75,11 @@ class Balance extends Component {
 					onCancel={this.handleCancel}
 					showAddModal={() => this.showAddFundsModal()}
 					showWithdrawFundsModal={() => this.showWithdrawFundsModal()}
+					showTransferModal={() => this.showTransferModal()}
 				/>
 				<AddFundsModal visible={this.state.addFundsVisible} onCancel={this.handleCancel} />
 				<WithdrawFundsModal visible={this.state.withdrawFundsVisible} onCancel={this.handleCancel} />
+				<TransferModal visible={this.state.transferModalVisible} onCancel={this.handleCancel} />
 				<Button className="operations-button" type="primary" size={'large'} onClick={this.showModal}>
 					Operacje
 				</Button>
