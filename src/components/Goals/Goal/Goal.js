@@ -14,9 +14,9 @@ export default class Goal extends Component {
 	checkIfGoalFilled = (value, maxValue) => {
 		if (value >= maxValue) {
 			return 'success';
-		} else {
-			return 'active';
 		}
+
+		return 'active';
 	};
 
 	render() {
