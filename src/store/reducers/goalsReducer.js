@@ -26,8 +26,9 @@ export function goalsReducer(state = initialState, action) {
 		}
 
 		case GoalsAction.SEND_TO_GOAL_SUCCESS: {
-			return { ...state, goals: [ ...state.goals, action.payload ] };
+			return { ...state, goals: state.goals.map(goal => goal.id === action.payload.id ? {...goal, currentFunds: goal.currentFunds + action.payload.funds}: goal)}
 		}
+
 		default: {
 			return state;
 		}
