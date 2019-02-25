@@ -11,14 +11,14 @@ export default class Goal extends Component {
 		return value * 100 / maxValue;
 	};
 
-	checkIfSuccess = (value, maxValue) => {
+	checkIfGoalFilled = (value, maxValue) => {
 		if (value >= maxValue) {
 			return 'success';
 		} else {
 			return 'active';
 		}
 	};
-	
+
 	render() {
 		return (
 			<div className="Goal">
@@ -33,7 +33,7 @@ export default class Goal extends Component {
 				</h3>
 				<Progress
 					percent={this.calcPercentage(this.props.currentFunds, this.props.fundsToSuccess)}
-					status={this.checkIfSuccess(this.props.currentFunds, this.props.fundsToSuccess)}
+					status={this.checkIfGoalFilled(this.props.currentFunds, this.props.fundsToSuccess)}
 				/>
 			</div>
 		);
