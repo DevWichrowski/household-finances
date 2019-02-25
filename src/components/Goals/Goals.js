@@ -16,18 +16,9 @@ class Goals extends Component {
 		};
 	}
 
-	showModal = () => {
-		this.setState({
-			visible: true
-		});
-	};
+	showModal = () => this.setState({ visible: true });
 
-	handleCancel = (e) => {
-		console.log(e);
-		this.setState({
-			visible: false
-		});
-	};
+	handleCancel = (e) => this.setState({ visible: false });
 
 	deleteGoal = (id, title) => {
 		this.props.deleteGoal(id);

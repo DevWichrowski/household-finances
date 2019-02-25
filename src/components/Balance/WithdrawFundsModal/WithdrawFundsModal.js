@@ -18,33 +18,25 @@ class WithdrawFundsModal extends Component {
 		};
 	}
 
-	saveCategoryToState = (value) => {
-		this.setState({ category: value });
-		console.log(`Kategoria wypłaty: ${value}`);
-	};
+	saveCategoryToState = (value) => this.setState({ category: value });
 
-	saveFundsToState = (value) => {
-		this.setState({
-			funds: value
-		});
-	};
+	saveFundsToState = (value) => this.setState({ funds: value });
 
-	clearState = () => {
-		this.setState({
-			funds: null
-		});
-	};
+	clearState = () => this.setState({ funds: null });
 
 	render() {
 		const { loading } = this.state;
+
 		const successMessage = () => {
 			message.success(`Pomyślnie wypłacono ${this.state.funds} zł z konta głównego`);
 			this.clearState();
 		};
+
 		const errorMessage = (text) => {
 			message.error(text);
 			this.clearState();
 		};
+
 		const Option = Select.Option;
 
 		return (

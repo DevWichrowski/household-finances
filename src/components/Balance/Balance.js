@@ -19,22 +19,17 @@ class Balance extends Component {
 			visible: false,
 			addFundsVisible: false,
 			withdrawFundsVisible: false,
-			transferModalVisible: false,
+			transferModalVisible: false
 		};
 	}
 
-	showModal = () => {
-		this.setState({
-			visible: true
-		});
-	};
+	showModal = () => this.setState({ visible: true });
 
 	showAddFundsModal = () => {
 		this.setState({
 			addFundsVisible: true,
 			visible: false
 		});
-		console.log('showAddModal');
 	};
 
 	showWithdrawFundsModal = () => {
@@ -42,7 +37,6 @@ class Balance extends Component {
 			withdrawFundsVisible: true,
 			visible: false
 		});
-		console.log('showAddModal');
 	};
 
 	showTransferModal = () => {
@@ -50,11 +44,9 @@ class Balance extends Component {
 			transferModalVisible: true,
 			visible: false
 		});
-		console.log('TransferModal');
 	};
 
 	handleCancel = (e) => {
-		console.log(e);
 		this.setState({
 			visible: false,
 			addFundsVisible: false,

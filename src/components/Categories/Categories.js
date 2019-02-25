@@ -15,11 +15,7 @@ class Categories extends Component {
 		};
 	}
 
-	showModal = () => {
-		this.setState({
-			visible: true
-		});
-	};
+	showModal = () => this.setState({ visible: true });
 
 	handleCancel = (e) => {
 		console.log(e);

@@ -18,18 +18,11 @@ class AddFundsModal extends Component {
 		};
 	}
 
-	saveCategoryToState = (value) => {
-		this.setState({ category: value });
-		console.log(`Kategoria wpłaty: ${value}`);
-	};
+	saveCategoryToState = (value) => this.setState({ category: value });
 
-	saveFundsToState = (value) => {
-		this.setState({ funds: value });
-	};
+	saveFundsToState = (value) => this.setState({ funds: value });
 
-	clearState = () => {
-		this.setState({ funds: null });
-	};
+	clearState = () => this.setState({ funds: null });
 
 	render() {
 		const { loading } = this.state;

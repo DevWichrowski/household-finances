@@ -14,18 +14,12 @@ class AddGoalModal extends Component {
 		};
 	}
 
-	saveGoalTitle = (e) => {
-		this.setState({ goalTitle: e.target.value });
-		console.log(this.state.goalTitle);
-	};
+	saveGoalTitle = (e) => this.setState({ goalTitle: e.target.value });
 
-	saveGoalFunds = (value) => {
-		this.setState({ goalFunds: value });
-		console.log(this.state.goalFunds);
-	};
+	saveGoalFunds = (value) => this.setState({ goalFunds: value });
 
 	addGoal = () => {
-		this.props.addGoal({ goalTitle: this.state.goalTitle, fundsNeeded: this.state.goalFunds});
+		this.props.addGoal({ goalTitle: this.state.goalTitle, fundsNeeded: this.state.goalFunds });
 		this.setState({ goalTitle: '', goalFunds: null });
 		this.props.onCancel();
 	};

@@ -16,20 +16,11 @@ class CategoryModal extends Component {
 		};
 	}
 
-	switchToAddCategory = () => {
-		this.setState({ categoryType: 'addCategory' });
-		console.log('Switchted to: [add category]');
-	};
+	switchToAddCategory = () => this.setState({ categoryType: 'addCategory' });
 
-	switchToWithdrawCategory = () => {
-		this.setState({ categoryType: 'withdrawCategory' });
-		console.log('Switchted to: [withdraw category]');
-	};
+	switchToWithdrawCategory = () => this.setState({ categoryType: 'withdrawCategory' });
 
-	saveCategoryName = (e) => {
-		this.setState({ categoryName: e.target.value });
-		console.log(this.state.categoryName);
-	};
+	saveCategoryName = (e) => this.setState({ categoryName: e.target.value });
 
 	addNewCategory = () => {
 		let addCategoriesLowerCase = [];

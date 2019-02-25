@@ -16,10 +16,7 @@ class Main extends Component {
 		};
 	}
 
-	onCollapse = (collapsed) => {
-		console.log(collapsed);
-		this.setState({ collapsed });
-	};
+	onCollapse = (collapsed) => this.setState({ collapsed });
 
 	render() {
 		const { Content, Footer, Sider } = Layout;

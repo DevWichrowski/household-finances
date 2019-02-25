@@ -19,21 +19,15 @@ class TransferModal extends Component {
 		};
 	}
 
-	saveFunds = (value) => {
-		this.setState({ funds: value });
-		console.log(this.state.funds);
-	};
+	saveFunds = (value) => this.setState({ funds: value });
 
-	saveGoalTitleID = (title, id) => {
-		this.setState({ goalTitle: title, goalId: id });
-		console.log(`Title: ${this.state.goalTitle}, ID: ${this.state.goalId}`);
-	};
+	saveGoalTitleID = (title, id) => this.setState({ goalTitle: title, goalId: id });
 
-	transferFunds = (funds) =>{
+	transferFunds = (funds) => {
 		this.props.transferToGoal(funds);
 		this.props.onCancel();
+	};
 
-	}
 	render() {
 		const { loading } = this.state;
 		const Option = Select.Option;
@@ -52,7 +46,7 @@ class TransferModal extends Component {
 							key="submit"
 							type="primary"
 							loading={loading}
-							onClick={() => this.transferFunds({id: this.state.goalId, funds: this.state.funds})}
+							onClick={() => this.transferFunds({ id: this.state.goalId, funds: this.state.funds })}
 						>
 							Przelej
 						</Button>
@@ -84,8 +78,6 @@ class TransferModal extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	// addCreditsToStore: (payload) => dispatch(addCredits(payload)),
-	// withdrawCreditsFromStore: (payload) => dispatch(withdrawCredits(payload))
 	transferToGoal: (payload) => dispatch(transferToGoal(payload))
 });
 

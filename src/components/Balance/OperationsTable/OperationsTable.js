@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './OperationsTable.scss';
-import { Table, Tag} from 'antd';
+import { Table, Tag } from 'antd';
 import { connect } from 'react-redux';
 import { getOperationsSelector } from '../../../store/selectors/balance.selectors';
 
@@ -24,10 +24,7 @@ class OperationsTable extends Component {
 		}, 1000);
 	};
 
-	onSelectChange = (selectedRowKeys) => {
-		console.log('selectedRowKeys changed: ', selectedRowKeys);
-		this.setState({ selectedRowKeys });
-	};
+	onSelectChange = (selectedRowKeys) => this.setState({ selectedRowKeys });
 
 	render() {
 		const { selectedRowKeys } = this.state;
@@ -88,7 +85,7 @@ class OperationsTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	operations: getOperationsSelector(state),
+	operations: getOperationsSelector(state)
 });
 
 export default connect(mapStateToProps, null)(OperationsTable);
