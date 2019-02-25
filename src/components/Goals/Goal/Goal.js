@@ -7,6 +7,10 @@ export default class Goal extends Component {
 		super(props);
 	}
 
+	calcPercentage = (value, maxValue) => {
+		return value * 100 / maxValue;
+	};
+
 	render() {
 		return (
 			<div className="Goal">
@@ -19,7 +23,10 @@ export default class Goal extends Component {
 				<h3>
 					{this.props.currentFunds} / {this.props.fundsToSuccess}
 				</h3>
-				<Progress percent={30} status="active" />
+				<Progress
+					percent={this.calcPercentage(this.props.currentFunds, this.props.fundsToSuccess)}
+					status="active"
+				/>
 			</div>
 		);
 	}
