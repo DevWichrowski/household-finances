@@ -1,8 +1,9 @@
-// import { takeLatest } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
+import { sendToGoalSaga } from './sendToGoalsSaga';
 
 
 function* actionWatcher() {
-
+    yield takeLatest('[Balance] TRANSFER_TO_GOAL', sendToGoalSaga);
 }
 
 

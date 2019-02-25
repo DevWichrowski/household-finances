@@ -25,6 +25,9 @@ export function goalsReducer(state = initialState, action) {
 			return { ...state, goals: state.goals.filter((goal) => goal.id !== action.payload) };
 		}
 
+		case GoalsAction.SEND_TO_GOAL_SUCCESS: {
+			return { ...state, goals: [ ...state.goals, action.payload ] };
+		}
 		default: {
 			return state;
 		}

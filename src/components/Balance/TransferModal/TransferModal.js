@@ -52,7 +52,7 @@ class TransferModal extends Component {
 							key="submit"
 							type="primary"
 							loading={loading}
-							onClick={() => this.transferFunds(this.state.funds)}
+							onClick={() => this.transferFunds({id: this.state.goalId, funds: this.state.funds})}
 						>
 							Przelej
 						</Button>
