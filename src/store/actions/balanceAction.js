@@ -10,6 +10,7 @@ export const ADD_CREDITS = '[Balance] - ADD CREDITS';
 export const WITHDRAW_CREDITS = '[Balance] - WITHDRAW CREDITS';
 export const NEW_ADD_CATEGORY = '[Balance] NEW_ADD_CATEGORY';
 export const NEW_WITHDRAW_CATAGORY = '[Balance] NEW_WITHDRAW_CATEGORY';
+export const TRANSFER_TO_GOAL = '[Balance] TRANSFER_TO_GOAL';
 
 export const addCredits = (payload) => ({
 	id: generateID(),
@@ -34,5 +35,10 @@ export const withdrawCredits = (payload) => ({
 	type: WITHDRAW_CREDITS,
 	operationType: 'withdrawOperation',
 	operationDate: currentDate,
+	payload
+});
+
+export const transferToGoal = (payload) => ({
+	type: TRANSFER_TO_GOAL,
 	payload
 });

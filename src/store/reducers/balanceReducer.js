@@ -55,6 +55,9 @@ export function balanceReducer(state = initialState, action) {
 		case BalanceAction.NEW_WITHDRAW_CATAGORY: {
 			return { ...state, withdrawCategories: [ ...state.withdrawCategories, action.payload ] };
 		}
+		case BalanceAction.TRANSFER_TO_GOAL: {
+			return { ...state, balance: state.balance - action.payload };
+		}
 		default: {
 			return state;
 		}

@@ -5,6 +5,7 @@ import { getBalanceSelector } from '../../../store/selectors/balance.selectors';
 import { connect } from 'react-redux';
 import NumericInput from 'react-numeric-input';
 import { getGoalsSelector } from '../../../store/selectors/goals.selector';
+import { transferToGoal } from '../../../store/actions/balanceAction';
 
 class TransferModal extends Component {
 	constructor(props) {
@@ -12,22 +13,27 @@ class TransferModal extends Component {
 
 		this.state = {
 			loading: false,
-      funds: null,
-      goalTitle: null,
-      goalId: null,
+			funds: null,
+			goalTitle: null,
+			goalId: null
 		};
 	}
 
 	saveFunds = (value) => {
 		this.setState({ funds: value });
 		console.log(this.state.funds);
-  };
-  
-  saveGoalTitleID = (title, id) => {
-    this.setState({goalTitle: title, goalId: id});
-    console.log(`Title: ${this.state.goalTitle}, ID: ${this.state.goalId}`);
-  }
+	};
 
+	saveGoalTitleID = (title, id) => {
+		this.setState({ goalTitle: title, goalId: id });
+		console.log(`Title: ${this.state.goalTitle}, ID: ${this.state.goalId}`);
+	};
+
+	transferFunds = (funds) =>{
+		this.props.transferToGoal(funds);
+		this.props.onCancel();
+
+	}
 	render() {
 		const { loading } = this.state;
 		const Option = Select.Option;
@@ -42,7 +48,12 @@ class TransferModal extends Component {
 						<Button key="back" onClick={this.props.onCancel}>
 							Zamknij
 						</Button>,
-						<Button key="submit" type="primary" loading={loading}>
+						<Button
+							key="submit"
+							type="primary"
+							loading={loading}
+							onClick={() => this.transferFunds(this.state.funds)}
+						>
 							Przelej
 						</Button>
 					]}
@@ -57,16 +68,14 @@ class TransferModal extends Component {
 						value={this.state.funds}
 					/>
 					<p>Wybierz cel</p>
-					<Select defaultValue="Bez kategorii" onChange={this.saveCategoryToState}>
-            
-            {this.props.goals.map((item, index) => {
+					<Select className="category-select" defaultValue="Wybierz cel">
+						{this.props.goals.map((item, index) => {
 							return (
 								<Option key={index} onClick={() => this.saveGoalTitleID(item.goalTitle, item.id)}>
 									{item.goalTitle}
 								</Option>
 							);
-            })}
-            
+						})}
 					</Select>
 				</Modal>
 			</div>
@@ -77,6 +86,7 @@ class TransferModal extends Component {
 const mapDispatchToProps = (dispatch) => ({
 	// addCreditsToStore: (payload) => dispatch(addCredits(payload)),
 	// withdrawCreditsFromStore: (payload) => dispatch(withdrawCredits(payload))
+	transferToGoal: (payload) => dispatch(transferToGoal(payload))
 });
 
 const mapStateToProps = (state) => ({
