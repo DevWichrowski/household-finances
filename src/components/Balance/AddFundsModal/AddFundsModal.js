@@ -18,16 +18,32 @@ class AddFundsModal extends Component {
 		};
 	}
 
+	successMessage = () => message.success(`Pomyślnie dodane ${this.state.funds} zł do konta głównego`);
+
+	errorMessage = () => message.error(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
+
 	saveCategoryToState = (value) => this.setState({ category: value });
 
 	saveFundsToState = (value) => this.setState({ funds: value });
 
 	clearState = () => this.setState({ funds: null });
 
+	addFunds = () => {
+		if (this.state.funds > 0) {
+			this.props.addCreditsToStore({
+				funds: this.state.funds,
+				category: this.state.category
+			});
+			this.props.onCancel();
+			this.successMessage();
+			this.clearState();
+		} else {
+			this.errorMessage();
+		}
+	};
+
 	render() {
 		const { loading } = this.state;
-		const successMessage = () => message.success(`Pomyślnie dodane ${this.state.funds} zł do konta głównego`);
-		const errorMessage = () => message.error(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
 		const Option = Select.Option;
 
 		return (
@@ -41,24 +57,7 @@ class AddFundsModal extends Component {
 						<Button key="back" onClick={this.props.onCancel}>
 							Zamknij
 						</Button>,
-						<Button
-							key="submit"
-							type="primary"
-							loading={loading}
-							onClick={() => {
-								if (this.state.funds > 0) {
-									this.props.addCreditsToStore({
-										funds: this.state.funds,
-										category: this.state.category
-									});
-									this.props.onCancel();
-									successMessage();
-									this.clearState();
-								} else {
-									errorMessage();
-								}
-							}}
-						>
+						<Button key="submit" type="primary" loading={loading} onClick={this.addFunds}>
 							Dodaj
 						</Button>
 					]}
