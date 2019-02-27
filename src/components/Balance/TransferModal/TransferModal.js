@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './TransferModal.scss';
-import { Modal, Button, Select } from 'antd';
+import { Modal, Button, Select, message } from 'antd';
 import { getBalanceSelector } from '../../../store/selectors/balance.selectors';
 import { connect } from 'react-redux';
 import NumericInput from 'react-numeric-input';
@@ -23,9 +23,14 @@ class TransferModal extends Component {
 
 	saveGoalTitleID = (title, id) => this.setState({ goalTitle: title, goalId: id });
 
-	transferFunds = (funds) => {
-		this.props.transferToGoal(funds);
-		this.props.onCancel();
+	transferFunds = () => {
+		if (this.state.funds <= this.props.balance) {
+			this.props.transferToGoal({ id: this.state.goalId, funds: this.state.funds });
+			this.props.onCancel();
+			message.success(`Przelano pomyślnie [${this.state.funds} zł] na cel [${this.state.goalTitle}]`);
+		} else {
+			message.error(`Błąd: Nie udało się przelać [${this.state.funds} zł] na cel [${this.state.goalTitle}]`);
+		}
 	};
 
 	render() {
@@ -42,12 +47,7 @@ class TransferModal extends Component {
 						<Button key="back" onClick={this.props.onCancel}>
 							Zamknij
 						</Button>,
-						<Button
-							key="submit"
-							type="primary"
-							loading={loading}
-							onClick={() => this.transferFunds({ id: this.state.goalId, funds: this.state.funds })}
-						>
+						<Button key="submit" type="primary" loading={loading} onClick={() => this.transferFunds()}>
 							Przelej
 						</Button>
 					]}
