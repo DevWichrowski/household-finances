@@ -24,18 +24,35 @@ class WithdrawFundsModal extends Component {
 
 	clearState = () => this.setState({ funds: null });
 
+	withdrawFunds = () => {
+		if (this.state.funds <= this.props.balance) {
+			if (this.state.funds > 0) {
+				this.props.withdrawCredits({
+					funds: this.state.funds,
+					category: this.state.category
+				});
+				this.props.onCancel();
+				this.successMessage();
+			} else {
+				this.errorMessage(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
+			}
+		} else {
+			this.errorMessage(`Brak wystarczających środków na koncie.`);
+		}
+	};
+
+	successMessage = () => {
+		message.success(`Pomyślnie wypłacono ${this.state.funds} zł z konta głównego`);
+		this.clearState();
+	};
+
+	errorMessage = (text) => {
+		message.error(text);
+		this.clearState();
+	};
+
 	render() {
 		const { loading } = this.state;
-
-		const successMessage = () => {
-			message.success(`Pomyślnie wypłacono ${this.state.funds} zł z konta głównego`);
-			this.clearState();
-		};
-
-		const errorMessage = (text) => {
-			message.error(text);
-			this.clearState();
-		};
 
 		const Option = Select.Option;
 
@@ -50,28 +67,7 @@ class WithdrawFundsModal extends Component {
 						<Button key="back" onClick={this.props.onCancel}>
 							Zamknij
 						</Button>,
-						<Button
-							key="submit"
-							type="primary"
-							loading={loading}
-							onClick={() => {
-								console.log(this.state.funds);
-								if (this.state.funds <= this.props.balance) {
-									if (this.state.funds > 0) {
-										this.props.withdrawCredits({
-											funds: this.state.funds,
-											category: this.state.category
-										});
-										this.props.onCancel();
-										successMessage();
-									} else {
-										errorMessage(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
-									}
-								} else {
-									errorMessage(`Brak wystarczających środków na koncie.`);
-								}
-							}}
-						>
+						<Button key="submit" type="primary" loading={loading} onClick={this.withdrawFunds}>
 							Wypłać
 						</Button>
 					]}
