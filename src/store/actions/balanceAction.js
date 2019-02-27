@@ -39,6 +39,9 @@ export const withdrawCredits = (payload) => ({
 });
 
 export const transferToGoal = (payload) => ({
+	id: generateID(),
 	type: TRANSFER_TO_GOAL,
+	operationType: 'transferOperation',
+	operationDate: currentDate,
 	payload
 });

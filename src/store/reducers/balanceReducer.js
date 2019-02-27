@@ -56,7 +56,19 @@ export function balanceReducer(state = initialState, action) {
 			return { ...state, withdrawCategories: [ ...state.withdrawCategories, action.payload ] };
 		}
 		case BalanceAction.TRANSFER_TO_GOAL: {
-			return { ...state, balance: state.balance - action.payload.funds };
+			return {
+				...state,
+				balance: state.balance - action.payload.funds,
+				operations: [
+					...state.operations,
+					{
+						funds: action.payload.funds,
+						operationType: action.operationType,
+						operationDate: action.operationDate,
+						id: action.id
+					}
+				]
+			};
 		}
 		default: {
 			return state;

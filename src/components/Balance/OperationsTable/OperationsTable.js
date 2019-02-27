@@ -41,6 +41,9 @@ class OperationsTable extends Component {
 					if (operationType === 'addOperation') {
 						text = 'Wpłata';
 						color = 'green';
+					} else if (operationType === 'transferOperation') {
+						text = 'Na Cel';
+						color = 'blue';
 					} else {
 						text = 'Wypłata';
 						color = 'volcano';
