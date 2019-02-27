@@ -6,6 +6,7 @@ import Balance from '../Balance/Balance';
 import { NavLink, Route } from 'react-router-dom';
 import Categories from '../Categories/Categories';
 import Goals from '../Goals/Goals';
+import Charts from '../Charts/Charts';
 
 class Main extends Component {
 	constructor(props) {
@@ -41,8 +42,10 @@ class Main extends Component {
 							</Menu.Item>
 
 							<Menu.Item key="3">
-								<Icon type="line-chart" />
-								<span>Historia</span>
+								<NavLink to="/charts">
+									<Icon type="line-chart" />
+									<span>Wykresy</span>
+								</NavLink>
 							</Menu.Item>
 
 							<Menu.Item key="4">
@@ -57,6 +60,7 @@ class Main extends Component {
 							<Route exact path="/" component={Balance} />
 							<Route path="/categories" component={Categories} />
 							<Route path="/goals" component={Goals} />
+							<Route path="/charts" component={Charts} />
 						</Content>
 						<Footer style={{ textAlign: 'center' }}>
 							@Author <a href="https://github.com/DevWichrowski">DevWichrowski</a>
