@@ -25,7 +25,11 @@ class TransferModal extends Component {
 
 	transferFunds = () => {
 		if (this.state.funds <= this.props.balance) {
-			this.props.transferToGoal({ id: this.state.goalId, funds: this.state.funds });
+			this.props.transferToGoal({
+				id: this.state.goalId,
+				funds: this.state.funds,
+				category: this.state.goalTitle
+			});
 			this.props.onCancel();
 			message.success(`Przelano pomyślnie [${this.state.funds} zł] na cel [${this.state.goalTitle}]`);
 		} else {

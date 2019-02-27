@@ -65,7 +65,8 @@ export function balanceReducer(state = initialState, action) {
 						funds: action.payload.funds,
 						operationType: action.operationType,
 						operationDate: action.operationDate,
-						id: action.id
+						id: action.id,
+						category: action.payload.category
 					}
 				]
 			};
