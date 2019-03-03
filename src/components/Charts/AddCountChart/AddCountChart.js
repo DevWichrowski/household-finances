@@ -17,7 +17,8 @@ class AddCountChart extends Component {
 			color += letters[Math.floor(Math.random() * 16)];
 		}
 		return color;
-	};
+    };
+    
 	generateChartColor = () => {
 		const chartsColor = [];
 		this.props.addCategories.map((category) => {
@@ -27,28 +28,32 @@ class AddCountChart extends Component {
 	};
 
 	generateData = () => {
-		let result = this.props.operations.reduce( (acc, val) => {
-            let operations = acc.filter((obj) => {
-                return obj.category == val.category;
-            }).pop() || { category: val.category, funds: 0 };
-        
-            operations.funds += val.funds;
-            acc.push(operations);
-            return acc.filter((item, i, a) => { return i == a.indexOf(item); });;
-        }, []);
-        console.log(result);
-        return result;
-    };
-    
-    generateDataChart = () =>{
-        const data = this.generateData();
-        const newData = [];
-        data.map(( item) =>{
-            newData.push(item.funds);
-        })
-        console.log(newData);
-        return newData;
-    }
+		let result = this.props.operations.reduce((acc, val) => {
+			let operations = acc
+				.filter((obj) => {
+					return obj.category == val.category;
+				})
+				.pop() || { category: val.category, funds: 0 };
+
+			operations.funds += val.funds;
+			acc.push(operations);
+			return acc.filter((item, i, a) => {
+				return i == a.indexOf(item);
+			});
+		}, []);
+		console.log(result);
+		return result;
+	};
+
+	generateDataChart = () => {
+		const data = this.generateData();
+		const newData = [];
+		data.map((item) => {
+			newData.push(item.funds);
+		});
+		console.log(newData);
+		return newData;
+	};
 
 	data = {
 		labels: this.props.addCategories,
@@ -62,10 +67,10 @@ class AddCountChart extends Component {
 	};
 
 	render() {
-        this.generateData();
+		this.generateData();
 		return (
 			<div className="AddCountCharts">
-				<h2>Doughnut Example</h2>
+				<h2>Wykres kategorii wpłat</h2>
 				<Doughnut data={this.data} />
 			</div>
 		);
