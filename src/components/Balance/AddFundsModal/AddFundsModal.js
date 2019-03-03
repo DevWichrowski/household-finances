@@ -75,13 +75,12 @@ class AddFundsModal extends Component {
 						defaultValue="Bez kategorii"
 						onChange={this.saveCategoryToState}
 					>
-						{this.props.addCategories.map((item, index) => {
-							return (
+						{this.props.addCategories.map((item, index) => (
 								<Option key={index} value={item}>
 									{item}
 								</Option>
-							);
-						})}
+							)
+						)}
 					</Select>
 				</Modal>
 			</div>
