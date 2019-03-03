@@ -31,14 +31,14 @@ class AddCountChart extends Component {
 		let result = this.props.operations.reduce((acc, val) => {
 			let operations = acc
 				.filter((obj) => {
-					return obj.category == val.category;
+					return obj.category === val.category;
 				})
 				.pop() || { category: val.category, funds: 0 };
 
 			operations.funds += val.funds;
 			acc.push(operations);
 			return acc.filter((item, i, a) => {
-				return i == a.indexOf(item);
+				return i === a.indexOf(item);
 			});
 		}, []);
 		console.log(result);

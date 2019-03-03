@@ -24,7 +24,7 @@ class TransferModal extends Component {
 	saveGoalTitleID = (title, id) => this.setState({ goalTitle: title, goalId: id });
 
 	transferFunds = () => {
-		if (this.state.funds <= this.props.balance) {
+		if (this.state.funds <= this.props.balance && this.state.goalTitle !== null) {
 			this.props.transferToGoal({
 				id: this.state.goalId,
 				funds: this.state.funds,
