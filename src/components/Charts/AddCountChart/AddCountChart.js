@@ -17,8 +17,8 @@ class AddCountChart extends Component {
 			color += letters[Math.floor(Math.random() * 16)];
 		}
 		return color;
-    };
-    
+	};
+
 	generateChartColor = () => {
 		const chartsColor = [];
 		this.props.addCategories.map((category) => {
@@ -27,21 +27,30 @@ class AddCountChart extends Component {
 		return chartsColor;
 	};
 
-	generateData = () => {
-		let result = this.props.operations.reduce((acc, val) => {
-			let operations = acc
-				.filter((obj) => {
-					return obj.category === val.category;
-				})
-				.pop() || { category: val.category, funds: 0 };
+	filterByOperationType = () => {
+		let filteredArray = [];
+		this.props.operations.filter((item) => {
+			if (item.operationType === 'addOperation') {
+				filteredArray.push(item);
+			}
+		});
+		return filteredArray;
+	};
 
-			operations.funds += val.funds;
-			acc.push(operations);
-			return acc.filter((item, i, a) => {
+	generateData = () => {
+		let result = this.filterByOperationType().reduce((tempArr, item) => {
+			let operations = tempArr
+				.filter((obj) => {
+					return obj.category === item.category;
+				})
+				.pop() || { category: item.category, funds: 0 };
+
+			operations.funds += item.funds;
+			tempArr.push(operations);
+			return tempArr.filter((item, i, a) => {
 				return i === a.indexOf(item);
 			});
 		}, []);
-		console.log(result);
 		return result;
 	};
 
