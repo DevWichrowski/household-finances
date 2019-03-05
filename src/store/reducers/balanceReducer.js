@@ -67,7 +67,11 @@ export function balanceReducer(state = initialState, action) {
 			};
 		}
 		case BalanceAction.NEW_ADD_CATEGORY: {
-			return { ...state, addCategories: [ ...state.addCategories, action.payload ] };
+			return {
+				...state,
+				addCategories: [ ...state.addCategories, action.payload ],
+				addCategoriesCount: [ ...state.addCategoriesCount, { category: action.payload, totalFunds: 0 } ]
+			};
 		}
 		case BalanceAction.NEW_WITHDRAW_CATAGORY: {
 			return { ...state, withdrawCategories: [ ...state.withdrawCategories, action.payload ] };
