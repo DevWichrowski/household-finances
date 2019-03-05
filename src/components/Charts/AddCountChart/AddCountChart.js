@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './AddCountChart.scss';
 import { Doughnut } from 'react-chartjs-2';
-import { getOperationsSelector, getAddCategoriesSelector } from '../../../store/selectors/balance.selectors';
+import { getOperationsSelector, getAddCategoriesSelector, getAddCategoriesCout } from '../../../store/selectors/balance.selectors';
 import { getGoalsSelector } from '../../../store/selectors/goals.selector';
 import { connect } from 'react-redux';
 
@@ -27,43 +27,45 @@ class AddCountChart extends Component {
 		return chartsColor;
 	};
 
-	filterByOperationType = () => {
-		let filteredArray = [];
-		this.props.operations.filter((item) => {
-			if (item.operationType === 'addOperation') {
-				filteredArray.push(item);
-			}
-		});
-		return filteredArray;
-	};
+	// filterByOperationType = () => {
+	// 	let filteredArray = [];
+	// 	this.props.operations.filter((item) => {
+	// 		if (item.operationType === 'addOperation') {
+	// 			filteredArray.push(item);
+	// 		}
+	// 	});
+	// 	return filteredArray;
+	// };
 
-	generateData = () => {
-		let result = this.filterByOperationType().reduce((tempArr, item) => {
-			let operations = tempArr
-				.filter((obj) => {
-					return obj.category === item.category;
-				})
-				.pop() || { category: item.category, funds: 0 };
+	// generateData = () => {
+	// 	let result = this.filterByOperationType().reduce((tempArr, item) => {
+	// 		let operations = tempArr
+	// 			.filter((obj) => {
+	// 				return obj.category === item.category;
+	// 			})
+	// 			.pop() || { category: item.category, funds: 0 };
 
-			operations.funds += item.funds;
-			tempArr.push(operations);
-			return tempArr.filter((item, i, a) => {
-				return i === a.indexOf(item);
-			});
-		}, []);
-		console.log(result);
-		return result;
-	};
+	// 		operations.funds += item.funds;
+	// 		tempArr.push(operations);
+	// 		return tempArr.filter((item, i, a) => {
+	// 			return i === a.indexOf(item);
+	// 		});
+	// 	}, []);
+	// 	console.log(result);
+	// 	return result;
+	// };
 
-	generateDataChart = () => {
-		return this.generateData().map((item) => item.funds);
-	};
+	// generateDataChart = () => {
+	// 	return this.generateData().map((item) => item.funds);
+	// };
 
 	data = {
 		labels: this.props.addCategories,
 		datasets: [
 			{
-				data: this.generateDataChart(),
+				data: this.props.addTotalFunds.map((item) => {   // TODO
+					return item.totalFunds
+				}),
 				backgroundColor: this.generateChartColor(),
 				hoverBackgroundColor: [ this.generateChartColor() ]
 			}
@@ -71,11 +73,13 @@ class AddCountChart extends Component {
 	};
 
 	render() {
-		this.generateData();
 		return (
 			<div className="AddCountCharts">
 				<h2>Wykres kategorii wpłat</h2>
 				<Doughnut data={this.data} />
+				<button onClick={() => console.log('asd',this.props.addTotalFunds.map((item)=>{
+					console.log(item.totalFunds);
+				}))}>asd</button>
 			</div>
 		);
 	}
@@ -84,7 +88,8 @@ class AddCountChart extends Component {
 const mapStateToProps = (state) => ({
 	operations: getOperationsSelector(state),
 	goals: getGoalsSelector(state),
-	addCategories: getAddCategoriesSelector(state)
+	addCategories: getAddCategoriesSelector(state),
+	addTotalFunds: getAddCategoriesCout(state)
 });
 
 export default connect(mapStateToProps, null)(AddCountChart);

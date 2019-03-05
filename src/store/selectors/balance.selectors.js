@@ -22,3 +22,8 @@ export const getWithdrawSelector = createSelector (
    state => state.withdrawCategories
 );
 
+export const getAddCategoriesCout = createSelector (
+   selectBalance,
+   state => state.addCategoriesCount
+);
+
