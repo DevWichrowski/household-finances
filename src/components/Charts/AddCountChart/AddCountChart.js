@@ -45,9 +45,6 @@ class AddCountChart extends Component {
 			<div className="AddCountCharts">
 				<h2>Wykres kategorii wpłat</h2>
 				<Doughnut data={this.data} />
-				<button onClick={() => console.log('asd',this.props.addTotalFunds.map((item)=>{
-					console.log(item.totalFunds);
-				}))}>asd</button>
 			</div>
 		);
 	}
