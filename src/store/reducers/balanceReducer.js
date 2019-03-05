@@ -11,8 +11,15 @@ const initialState = {
 			category: 'Wynagrodzenie'
 		}
 	],
-	addCategories: ['Wynagrodzenie', 'Oddany dług', 'Prezent', 'Sprzedaż','Bez kategorii' ],
-	withdrawCategories: [ 'Rachunki', 'Rozrywka', 'Zakupy', 'Naprawa', 'Bez kategorii' ],
+	addCategories: [ 'Wynagrodzenie', 'Oddany dług', 'Prezent', 'Sprzedaż', 'Bez kategorii' ],
+	addCategoriesCount: [
+		{ category: 'Wynagrodzenie', totalFunds: 5000 },
+		{ category: 'Oddany dług', totalFunds: 0 },
+		{ category: 'Prezent', totalFunds: 0 },
+		{ category: 'Sprzedaż', totalFunds: 0 },
+		{ category: 'Bez kategorii', totalFunds: 0 }
+	],
+	withdrawCategories: [ 'Rachunki', 'Rozrywka', 'Zakupy', 'Naprawa', 'Bez kategorii' ]
 };
 
 export function balanceReducer(state = initialState, action) {
@@ -30,7 +37,17 @@ export function balanceReducer(state = initialState, action) {
 						id: action.id,
 						category: action.payload.category
 					}
-				]
+				],
+				addCategoriesCount: state.addCategoriesCount.map(
+					(item) =>
+						item.category === action.payload.category
+							? {
+									...item,
+									totalFunds: item.totalFunds + action.payload.funds,
+									category: action.payload.category
+								}
+							: item
+				)
 			};
 		}
 		case BalanceAction.WITHDRAW_CREDITS: {
