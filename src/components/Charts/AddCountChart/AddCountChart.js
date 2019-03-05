@@ -51,17 +51,12 @@ class AddCountChart extends Component {
 				return i === a.indexOf(item);
 			});
 		}, []);
+		console.log(result);
 		return result;
 	};
 
 	generateDataChart = () => {
-		const data = this.generateData();
-		const newData = [];
-		data.map((item) => {
-			newData.push(item.funds);
-		});
-		console.log(newData);
-		return newData;
+		return this.generateData().map((item) => item.funds);
 	};
 
 	data = {
