@@ -27,38 +27,6 @@ class AddCountChart extends Component {
 		return chartsColor;
 	};
 
-	// filterByOperationType = () => {
-	// 	let filteredArray = [];
-	// 	this.props.operations.filter((item) => {
-	// 		if (item.operationType === 'addOperation') {
-	// 			filteredArray.push(item);
-	// 		}
-	// 	});
-	// 	return filteredArray;
-	// };
-
-	// generateData = () => {
-	// 	let result = this.filterByOperationType().reduce((tempArr, item) => {
-	// 		let operations = tempArr
-	// 			.filter((obj) => {
-	// 				return obj.category === item.category;
-	// 			})
-	// 			.pop() || { category: item.category, funds: 0 };
-
-	// 		operations.funds += item.funds;
-	// 		tempArr.push(operations);
-	// 		return tempArr.filter((item, i, a) => {
-	// 			return i === a.indexOf(item);
-	// 		});
-	// 	}, []);
-	// 	console.log(result);
-	// 	return result;
-	// };
-
-	// generateDataChart = () => {
-	// 	return this.generateData().map((item) => item.funds);
-	// };
-
 	data = {
 		labels: this.props.addCategories,
 		datasets: [
