@@ -27,3 +27,7 @@ export const getAddCategoriesCout = createSelector (
    state => state.addCategoriesCount
 );
 
+export const getWithdrawCategoriesCout = createSelector (
+   selectBalance,
+   state => state.withdrawCategoriesCount
+);
