@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './AddCountChart.scss';
+import './CountChart.scss';
 import { Doughnut } from 'react-chartjs-2';
 
 
-class AddCountChart extends Component {
+class CountChart extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -54,4 +54,4 @@ class AddCountChart extends Component {
 	}
 }
 
-export default AddCountChart;
+export default CountChart;

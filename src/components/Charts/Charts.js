@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Charts.scss';
 import OperationCountChart from './OperationCountChart/OperationCountChart';
-import AddCountChart from './AddCountChart/AddCountChart';
+import CountChart from './CountChart/CountChart';
 import {
 	getOperationsSelector,
 	getAddCategoriesSelector,
@@ -16,7 +16,7 @@ class Charts extends Component {
 		return (
 			<div className="Charts">
 			<OperationCountChart />
-			<AddCountChart labels={this.props.addCategories} data={this.props.addTotalFunds} />
+			<CountChart labels={this.props.addCategories} data={this.props.addTotalFunds} />
 			</div>
 		);
 	}
