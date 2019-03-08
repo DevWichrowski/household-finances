@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import './AddCountChart.scss';
 import { Doughnut } from 'react-chartjs-2';
-import {
-	getOperationsSelector,
-	getAddCategoriesSelector,
-	getAddCategoriesCout
-} from '../../../store/selectors/balance.selectors';
-import { getGoalsSelector } from '../../../store/selectors/goals.selector';
-import { connect } from 'react-redux';
+
 
 class AddCountChart extends Component {
 	constructor(props) {
@@ -23,9 +17,9 @@ class AddCountChart extends Component {
 		return color;
 	};
 
-	generateChartColor = () => {
+	generateChartColor = (arr) => {
 		const chartsColor = [];
-		this.props.addCategories.map((category) => {
+		arr.map((category) => {
 			chartsColor.push(this.getRandomColor());
 		});
 		return chartsColor;
@@ -40,12 +34,12 @@ class AddCountChart extends Component {
 	};
 
 	data = {
-		labels: this.props.addCategories,
+		labels: this.props.labels,
 		datasets: [
 			{
-				data: this.getTotalCount(this.props.addTotalFunds),
-				backgroundColor: this.generateChartColor(),
-				hoverBackgroundColor: [ this.generateChartColor() ]
+				data: this.getTotalCount(this.props.data),
+				backgroundColor: this.generateChartColor(this.props.labels),
+				hoverBackgroundColor: [ this.generateChartColor(this.props.labels) ]
 			}
 		]
 	};
@@ -60,11 +54,4 @@ class AddCountChart extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
-	operations: getOperationsSelector(state),
-	goals: getGoalsSelector(state),
-	addCategories: getAddCategoriesSelector(state),
-	addTotalFunds: getAddCategoriesCout(state)
-});
-
-export default connect(mapStateToProps, null)(AddCountChart);
+export default AddCountChart;
