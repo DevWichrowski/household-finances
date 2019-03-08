@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './AddCountChart.scss';
 import { Doughnut } from 'react-chartjs-2';
-import { getOperationsSelector, getAddCategoriesSelector, getAddCategoriesCout } from '../../../store/selectors/balance.selectors';
+import {
+	getOperationsSelector,
+	getAddCategoriesSelector,
+	getAddCategoriesCout
+} from '../../../store/selectors/balance.selectors';
 import { getGoalsSelector } from '../../../store/selectors/goals.selector';
 import { connect } from 'react-redux';
 
@@ -27,13 +31,17 @@ class AddCountChart extends Component {
 		return chartsColor;
 	};
 
+	getTotalCount = (array) => {
+		array.map((item) => {
+			return item.totalFunds;
+		});
+	};
+
 	data = {
 		labels: this.props.addCategories,
 		datasets: [
 			{
-				data: this.props.addTotalFunds.map((item) => {   // TODO
-					return item.totalFunds
-				}),
+				data: this.getTotalCount(this.props.addTotalFunds),
 				backgroundColor: this.generateChartColor(),
 				hoverBackgroundColor: [ this.generateChartColor() ]
 			}
