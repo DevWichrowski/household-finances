@@ -32,9 +32,11 @@ class AddCountChart extends Component {
 	};
 
 	getTotalCount = (array) => {
+		let dataArray = [];
 		array.map((item) => {
-			return item.totalFunds;
+			dataArray = [...dataArray, item.totalFunds]
 		});
+		return dataArray;
 	};
 
 	data = {
