@@ -12,6 +12,7 @@ const initialState = {
 		}
 	],
 	addCategories: [ 'Wynagrodzenie', 'Oddany dług', 'Prezent', 'Sprzedaż', 'Bez kategorii' ],
+	withdrawCategories: [ 'Rachunki', 'Rozrywka', 'Zakupy', 'Naprawa', 'Bez kategorii' ],
 	addCategoriesCount: [
 		{ category: 'Wynagrodzenie', totalFunds: 5000 },
 		{ category: 'Oddany dług', totalFunds: 0 },
@@ -19,7 +20,13 @@ const initialState = {
 		{ category: 'Sprzedaż', totalFunds: 0 },
 		{ category: 'Bez kategorii', totalFunds: 0 }
 	],
-	withdrawCategories: [ 'Rachunki', 'Rozrywka', 'Zakupy', 'Naprawa', 'Bez kategorii' ]
+	withdrawCategoriesCount: [
+		{ category: 'Rachunki', totalFunds: 0 },
+		{ category: 'Rozrywka', totalFunds: 0 },
+		{ category: 'Zakupy', totalFunds: 0 },
+		{ category: 'Naprawa', totalFunds: 0 },
+		{ category: 'Bez kategorii', totalFunds: 0 }
+	]
 };
 
 export function balanceReducer(state = initialState, action) {
@@ -74,7 +81,14 @@ export function balanceReducer(state = initialState, action) {
 			};
 		}
 		case BalanceAction.NEW_WITHDRAW_CATAGORY: {
-			return { ...state, withdrawCategories: [ ...state.withdrawCategories, action.payload ] };
+			return {
+				...state,
+				withdrawCategories: [ ...state.withdrawCategories, action.payload ],
+				withdrawCategoriesCount: [
+					...state.withdrawCategoriesCount,
+					{ category: action.payload, totalFunds: 0 }
+				]
+			};
 		}
 		case BalanceAction.TRANSFER_TO_GOAL: {
 			return {

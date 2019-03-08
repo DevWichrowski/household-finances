@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './CountChart.scss';
 import { Doughnut } from 'react-chartjs-2';
 
-
 class CountChart extends Component {
 	constructor(props) {
 		super(props);
@@ -28,7 +27,7 @@ class CountChart extends Component {
 	getTotalCount = (array) => {
 		let dataArray = [];
 		array.map((item) => {
-			dataArray = [...dataArray, item.totalFunds]
+			dataArray = [ ...dataArray, item.totalFunds ];
 		});
 		return dataArray;
 	};
@@ -47,7 +46,7 @@ class CountChart extends Component {
 	render() {
 		return (
 			<div className="AddCountCharts">
-				<h2>Wykres kategorii wpłat</h2>
+				<h2>{this.props.title}</h2>
 				<Doughnut data={this.data} />
 			</div>
 		);

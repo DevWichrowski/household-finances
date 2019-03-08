@@ -16,7 +16,7 @@ class Charts extends Component {
 		return (
 			<div className="Charts">
 			<OperationCountChart />
-			<CountChart labels={this.props.addCategories} data={this.props.addTotalFunds} />
+			<CountChart labels={this.props.addCategories} data={this.props.addTotalFunds} title={'Wykres wpłat kategorii'}/>
 			</div>
 		);
 	}
