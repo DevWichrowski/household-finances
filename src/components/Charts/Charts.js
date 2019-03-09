@@ -17,6 +17,30 @@ import {
 import { connect } from 'react-redux';
 
 class Charts extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	countAllOperation = () => {
+		let addOperations = null;
+		let withdrawOperations = null;
+		let transferOperations = null;
+
+		this.props.addTotalFunds.map((item) => (addOperations += item.totalFunds));
+
+		this.props.withdrawTotalFunds.map((item) => (withdrawOperations += item.totalFunds));
+
+		this.props.getGoalsTotalFunds.map((item) => (transferOperations += item.totalFunds));
+
+		let allOperations = [
+			{ totalFunds: addOperations },
+			{ totalFunds: withdrawOperations },
+			{ totalFunds: transferOperations }
+		];
+
+		return allOperations;
+	};
+
 	render() {
 		return (
 			<div className="Charts">
@@ -24,17 +48,22 @@ class Charts extends Component {
 				<CountChart
 					labels={this.props.addCategories}
 					data={this.props.addTotalFunds}
-					title={'Wykres wpłat kategorii'}
+					title={'Wpłat gotówki'}
 				/>
 				<CountChart
 					labels={this.props.withdrawCategories}
 					data={this.props.withdrawTotalFunds}
-					title={'Wykres wypłat kategorii'}
+					title={'Wypłaty gotówki'}
 				/>
 				<CountChart
 					labels={this.props.goalTitles}
 					data={this.props.getGoalsTotalFunds}
-					title={'Wykres przelewów na wpłaty'}
+					title={'Przelewy na cel'}
+				/>
+				<CountChart
+					labels={this.props.goalTitles}
+					data={this.countAllOperation()}
+					title={'Suma wszystkich operacji'}
 				/>
 			</div>
 		);
