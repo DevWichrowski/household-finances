@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Provider from 'react-redux/es/components/Provider';
-import { PersistGate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './store/localStorage/configureStore';
 
 ReactDOM.render(

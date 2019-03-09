@@ -7,7 +7,7 @@ import { rootReducer } from '../reducers/rootReducer';
 import mySaga from '../sagas/index';
 import createSagaMiddleware from 'redux-saga';
 
-const persistConfig = { key: 'root',storage };
+const persistConfig = { key: 'root', storage };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(persistedReducer, {}, composeWithDevTools(applyMiddleware(thunk, sagaMiddleware)));
