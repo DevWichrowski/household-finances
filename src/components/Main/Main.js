@@ -29,14 +29,14 @@ class Main extends Component {
 						<div className="logo" />
 						<Menu theme="dark" defaultSelectedKeys={[ '1' ]} mode="inline">
 							<Menu.Item key="1">
-								<NavLink to="/household">
+								<NavLink to="/">
 									<Icon type="credit-card" />
 									<span>Stan konta</span>
 								</NavLink>
 							</Menu.Item>
 
 							<Menu.Item key="2">
-								<NavLink to="/categorinpes" />
+								<NavLink to="/categories" />
 								<Icon type="book" />
 								<span>Kategorie</span>
 							</Menu.Item>
@@ -57,7 +57,7 @@ class Main extends Component {
 					</Sider>
 					<Layout>
 						<Content className="content">
-							<Route exact path="/household" component={Balance} />
+							<Route exact path="/" component={Balance} />
 							<Route path="/categories" component={Categories} />
 							<Route path="/goals" component={Goals} />
 							<Route path="/charts" component={Charts} />
