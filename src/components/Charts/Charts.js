@@ -44,29 +44,23 @@ class Charts extends Component {
 	render() {
 		return (
 			<div className="charts">
-				{/* <div className="chart-row"> */}
 					<OperationCountChart className="chart"/>
 					<CountChart
 						labels={this.props.goalTitles}
 						data={this.countAllOperation()}
 						title={'Suma wszystkich operacji'}
 						className="chart"/>
-				{/* </div> */}
-				{/* <div className="chart-row"> */}
 					<CountChart
 						labels={this.props.withdrawCategories}
 						data={this.props.withdrawTotalFunds}
 						title={'Wypłaty gotówki'}
 						className="chart"/>
 					<CountChart
-						labels={this.props.goalTitles}
+						labels={['Wpłata','Wypłata','Przelew na cel']}
 						data={this.props.getGoalsTotalFunds}
 						title={'Przelewy na cel'}
 						className="chart"/>
-				{/* </div> */}
-				{/* <div className="chart-row"> */}
 				<CountChart labels={this.props.addCategories} data={this.props.addTotalFunds} title={'Wpłat gotówki'} />
-				{/* </div> */}
 			</div>
 		);
 	}
