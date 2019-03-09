@@ -32,6 +32,14 @@ class CountChart extends Component {
 		return dataArray;
 	};
 
+	hasEntries = () => {
+		for (const operation of this.props.data) {
+			if (operation.totalFunds) return true;
+		}
+
+		return false;
+	}
+
 	data = {
 		labels: this.props.labels,
 		datasets: [
@@ -47,7 +55,7 @@ class CountChart extends Component {
 		return (
 			<div className="AddCountCharts">
 				<h2>{this.props.title}</h2>
-				<Doughnut data={this.data} />
+				{ this.hasEntries() ? (<Doughnut data={this.data} />) : (<h2>Brak danych</h2>) }	
 			</div>
 		);
 	}
