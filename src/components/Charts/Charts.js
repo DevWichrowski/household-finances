@@ -9,7 +9,11 @@ import {
 	getWithdrawSelector,
 	getWithdrawCategoriesCout
 } from '../../store/selectors/balance.selectors';
-import { getGoalsSelector, getTransferTotalCount } from '../../store/selectors/goals.selector';
+import {
+	getGoalsSelector,
+	getTransferTotalCount,
+	getTransferTotalCountTitles
+} from '../../store/selectors/goals.selector';
 import { connect } from 'react-redux';
 
 class Charts extends Component {
@@ -28,7 +32,7 @@ class Charts extends Component {
 					title={'Wykres wypłat kategorii'}
 				/>
 				<CountChart
-					labels={this.props.goals}
+					labels={this.props.goalTitles}
 					data={this.props.getGoalsTotalFunds}
 					title={'Wykres przelewów na wpłaty'}
 				/>
@@ -44,7 +48,8 @@ const mapStateToProps = (state) => ({
 	addTotalFunds: getAddCategoriesCout(state),
 	withdrawCategories: getWithdrawSelector(state),
 	withdrawTotalFunds: getWithdrawCategoriesCout(state),
-	getGoalsTotalFunds: getTransferTotalCount(state)
+	getGoalsTotalFunds: getTransferTotalCount(state),
+	goalTitles: getTransferTotalCountTitles(state)
 });
 
 export default connect(mapStateToProps, null)(Charts);

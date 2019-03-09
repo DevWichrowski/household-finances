@@ -11,3 +11,8 @@ export const getGoalsSelector= createSelector(
     selectGoals,
     state => state.transferCount
  );
+
+ export const getTransferTotalCountTitles= createSelector(
+    selectGoals,
+    state => state.transferCount.map(item => item.goalTitle)
+ );
