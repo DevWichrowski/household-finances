@@ -1,7 +1,8 @@
 import * as GoalsAction from '../actions/goalsAction';
 
 const initialState = {
-	goals: [ { id: '_aweq13221', goalTitle: 'Na motocykl', fundsNeeded: 1000, currentFunds: 100 } ]
+	goals: [ { id: '_aweq13221', goalTitle: 'Na motocykl', fundsNeeded: 1000, currentFunds: 100 } ],
+	transferCount: [{category: 'Na motocykl', totalFunds: 100} ]
 };
 
 export function goalsReducer(state = initialState, action) {

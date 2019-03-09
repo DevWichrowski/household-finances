@@ -26,7 +26,7 @@ const initialState = {
 		{ category: 'Zakupy', totalFunds: 0 },
 		{ category: 'Naprawa', totalFunds: 0 },
 		{ category: 'Bez kategorii', totalFunds: 0 }
-	]
+	],
 };
 
 export function balanceReducer(state = initialState, action) {

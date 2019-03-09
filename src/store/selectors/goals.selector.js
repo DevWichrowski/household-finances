@@ -6,3 +6,8 @@ export const getGoalsSelector= createSelector(
     selectGoals,
     state => state.goals
  );
+
+ export const getTransferTotalCount= createSelector(
+    selectGoals,
+    state => state.transferCount
+ );
