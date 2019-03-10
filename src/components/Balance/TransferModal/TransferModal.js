@@ -43,7 +43,8 @@ class TransferModal extends Component {
 
 		return (
 			<div className="TransferModal">
-				<Modal className="transfer-funds-modal"
+				<Modal
+					className="transfer-funds-modal"
 					title="Przelej na cel"
 					visible={this.props.visible}
 					onCancel={this.props.onCancel}

@@ -49,7 +49,8 @@ class AddFundsModal extends Component {
 
 		return (
 			<div className="AddFundsModal">
-				<Modal className="add-funds-modal"
+				<Modal
+					className="add-funds-modal"
 					visible={this.props.visible}
 					title="Dodaj kwotę"
 					onOk={this.handleOk}
@@ -77,11 +78,10 @@ class AddFundsModal extends Component {
 						onChange={this.saveCategoryToState}
 					>
 						{this.props.addCategories.map((item, index) => (
-								<Option key={index} value={item}>
-									{item}
-								</Option>
-							)
-						)}
+							<Option key={index} value={item}>
+								{item}
+							</Option>
+						))}
 					</Select>
 				</Modal>
 			</div>

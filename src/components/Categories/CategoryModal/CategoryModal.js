@@ -71,7 +71,8 @@ class CategoryModal extends Component {
 
 		return (
 			<div className="CategoryModal">
-				<Modal className="category-modal"
+				<Modal
+					className="category-modal"
 					title="Dodaj nową kategorię"
 					visible={this.props.visible}
 					onCancel={this.props.onCancel}
