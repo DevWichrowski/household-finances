@@ -41,20 +41,20 @@ class Charts extends Component {
 		return allOperations;
 	};
 
-	isVisible = data => {
+	isVisible = (data) => {
 		for (const operation of data) {
 			if (!!operation.totalFunds) return true;
 		}
 
 		return false;
-	}
+	};
 
 	render() {
 		return (
 			<div className="charts">
-				<OperationCountChart className="chart"/>
+				<OperationCountChart className="chart" />
 				<CountChart
-					labels={this.props.goalTitles}
+					labels={[ 'Wpłata', 'Wypłata', 'Przelew na cel' ]}
 					data={this.countAllOperation()}
 					title={'Suma wszystkich operacji'}
 					className="chart"
@@ -66,7 +66,7 @@ class Charts extends Component {
 					className="chart"
 				/>
 				<CountChart
-					labels={['Wpłata','Wypłata','Przelew na cel']}
+					labels={[ this.props.goalTitles ]}
 					data={this.props.getGoalsTotalFunds}
 					title={'Przelewy na cel'}
 					className="chart"
