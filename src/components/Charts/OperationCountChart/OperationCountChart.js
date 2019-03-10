@@ -20,6 +20,14 @@ class OperationCountChart extends Component {
 		return operations.length;
 	};
 
+	hasEntries = () => {
+		for (const operation of this.props.operations) {
+			if (operation.operationType) return true;
+		}
+
+		return false;
+	}
+
 	data = {
 		labels: [ 'Wpłata', 'Wypłata', 'Przelew na cel' ],
 		datasets: [
@@ -39,7 +47,8 @@ class OperationCountChart extends Component {
 		return (
 			<div className="OperationCountChart">
 				<h2>Ilość wykonanych operacji</h2>
-				<Pie data={this.data} />
+				{/* <Pie data={this.data} /> */}
+				{ this.hasEntries() ? (<Pie data={this.data} />) : (<h2>Brak danych</h2>) }	
 			</div>
 		);
 	}
