@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Input, Button } from 'antd';
+import { Modal, Input, Button, message } from 'antd';
 import NumericInput from 'react-numeric-input';
 import { connect } from 'react-redux';
 import { addGoal } from '../../../store/actions/goalsAction';
@@ -20,16 +20,22 @@ class AddGoalModal extends Component {
 	saveGoalFunds = (value) => this.setState({ goalFunds: value });
 
 	addGoal = () => {
-		this.props.addGoal({ goalTitle: this.state.goalTitle, fundsNeeded: this.state.goalFunds });
-		this.setState({ goalTitle: '', goalFunds: null });
-		this.props.onCancel();
+		if (this.state.goalFunds > 0) {
+			this.props.addGoal({ goalTitle: this.state.goalTitle, fundsNeeded: this.state.goalFunds });
+			message.success(`Stworzono nowy cel [${this.state.goalTitle}]`);
+			this.setState({ goalTitle: '', goalFunds: null });
+			this.props.onCancel();
+		} else {
+			message.error(`Podaj liczbę wiekszą od 0`);
+		}
 	};
 
 	render() {
 		const { loading } = this.state;
 		return (
 			<div className="AddGoalModal">
-				<Modal className="add-goal-modal"
+				<Modal
+					className="add-goal-modal"
 					title="Dodaj nowy cel"
 					visible={this.props.visible}
 					onCancel={this.props.onCancel}
