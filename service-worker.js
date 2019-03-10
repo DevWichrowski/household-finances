@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/household-finances/precache-manifest.0ab70aba80e8632734fde3d75c5bdbef.js"
+  "/household-finances/precache-manifest.b5f119a1e7a41cd0237e21f98995f11a.js"
 );
 
 workbox.clientsClaim();

@@ -1,15 +1,15 @@
 {
-  "main.css": "/household-finances/static/css/main.fe4a5a24.chunk.css",
-  "main.js": "/household-finances/static/js/main.54618550.chunk.js",
-  "main.js.map": "/household-finances/static/js/main.54618550.chunk.js.map",
+  "main.css": "/household-finances/static/css/main.bc51600a.chunk.css",
+  "main.js": "/household-finances/static/js/main.fac6ad8d.chunk.js",
+  "main.js.map": "/household-finances/static/js/main.fac6ad8d.chunk.js.map",
   "runtime~main.js": "/household-finances/static/js/runtime~main.5c72c891.js",
   "runtime~main.js.map": "/household-finances/static/js/runtime~main.5c72c891.js.map",
   "static/css/2.3b9d2585.chunk.css": "/household-finances/static/css/2.3b9d2585.chunk.css",
-  "static/js/2.d95fef64.chunk.js": "/household-finances/static/js/2.d95fef64.chunk.js",
-  "static/js/2.d95fef64.chunk.js.map": "/household-finances/static/js/2.d95fef64.chunk.js.map",
+  "static/js/2.da40bb89.chunk.js": "/household-finances/static/js/2.da40bb89.chunk.js",
+  "static/js/2.da40bb89.chunk.js.map": "/household-finances/static/js/2.da40bb89.chunk.js.map",
   "index.html": "/household-finances/index.html",
-  "precache-manifest.0ab70aba80e8632734fde3d75c5bdbef.js": "/household-finances/precache-manifest.0ab70aba80e8632734fde3d75c5bdbef.js",
+  "precache-manifest.b5f119a1e7a41cd0237e21f98995f11a.js": "/household-finances/precache-manifest.b5f119a1e7a41cd0237e21f98995f11a.js",
   "service-worker.js": "/household-finances/service-worker.js",
   "static/css/2.3b9d2585.chunk.css.map": "/household-finances/static/css/2.3b9d2585.chunk.css.map",
-  "static/css/main.fe4a5a24.chunk.css.map": "/household-finances/static/css/main.fe4a5a24.chunk.css.map"
+  "static/css/main.bc51600a.chunk.css.map": "/household-finances/static/css/main.bc51600a.chunk.css.map"
 }
