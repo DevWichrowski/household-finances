@@ -27,3 +27,22 @@
 
 
 }
+
+@media screen and (max-width: 650px) {
+    .Categories {
+        .categories-container {
+            margin: 55px auto;
+        }
+
+        .add-category-button {
+            position: absolute !important;
+            bottom: unset !important;
+            top: 0;
+            margin-right: 0 !important;
+            margin-bottom: 0 !important;
+            margin-top: 55px;
+            width: 100%;
+        }
+    }
+
+}
