@@ -19,3 +19,15 @@
     margin-right: 5%;
   }
 }
+
+@media screen and (max-width: 650px){
+.operations-button{
+  position: absolute!important;
+  top: 0;
+  right:0;
+  width: 100%;
+  bottom: unset!important;
+  margin-top: 150px;
+  margin-right: 0!important;
+}
+}
