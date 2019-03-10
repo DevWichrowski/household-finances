@@ -13,11 +13,33 @@ class Main extends Component {
 		super(props);
 
 		this.state = {
-			collapsed: false
+			collapsed: false,
+			sidebarVisible: true,
+			sidebarStyle: 'mobile'
 		};
 	}
 
+	componentDidMount() {
+		this.showSideBar();
+		window.addEventListener('resize', this.showSideBar);
+	}
+
+	componentWillMount() {
+		window.removeEventListener('resize', this.showSideBar);
+	}
+
 	onCollapse = (collapsed) => this.setState({ collapsed });
+
+	showSideBar = () => {
+		if (window.innerWidth <= 850) {
+			this.setState({ sidebarVisible: false });
+			this.setState({ sidebarStyle: 'mobile' });
+			return;
+		}
+
+		this.setState({ sidebarVisible: true });
+		this.setState({ sidebarStyle: 'web' });
+	};
 
 	render() {
 		const { Content, Footer, Sider } = Layout;
@@ -25,38 +47,58 @@ class Main extends Component {
 		return (
 			<div className="Main">
 				<Layout className="layout">
-					<Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-						<div className="logo" />
-						<Menu theme="dark" defaultSelectedKeys={[ '1' ]} mode="inline">
-							<Menu.Item key="1">
-								<NavLink to="/">
-									<Icon type="credit-card" />
-									<span>Stan konta</span>
-								</NavLink>
-							</Menu.Item>
+					{this.state.sidebarVisible ? (
+						<Sider
+							collapsible
+							collapsed={this.state.collapsed}
+							onCollapse={this.onCollapse}
+							className={this.state.sidebarStyle}
+						>
+							<div className="logo" />
+							<Menu theme="dark" defaultSelectedKeys={[ '1' ]} mode="inline">
+								<Menu.Item key="1">
+									<NavLink to="/">
+										<Icon type="credit-card" />
+										<span>Stan konta</span>
+									</NavLink>
+								</Menu.Item>
 
-							<Menu.Item key="2">
-								<NavLink to="/categories" />
-								<Icon type="book" />
-								<span>Kategorie</span>
-							</Menu.Item>
+								<Menu.Item key="2">
+									<NavLink to="/categories" />
+									<Icon type="book" />
+									<span>Kategorie</span>
+								</Menu.Item>
 
-							<Menu.Item key="3">
-								<NavLink to="/charts">
-									<Icon type="line-chart" />
-									<span>Wykresy</span>
-								</NavLink>
-							</Menu.Item>
+								<Menu.Item key="3">
+									<NavLink to="/charts">
+										<Icon type="line-chart" />
+										<span>Wykresy</span>
+									</NavLink>
+								</Menu.Item>
 
-							<Menu.Item key="4">
-								<NavLink to="/goals" />
-								<Icon type="star" />
-								<span>Cele</span>
-							</Menu.Item>
-						</Menu>
-					</Sider>
+								<Menu.Item key="4">
+									<NavLink to="/goals" />
+									<Icon type="star" />
+									<span>Cele</span>
+								</Menu.Item>
+							</Menu>
+						</Sider>
+					) : null}
+
 					<Layout>
-						<Content className="content">
+						{this.state.sidebarStyle !== 'web' ? (
+							<Icon
+								type="menu-unfold"
+								onClick={() => this.setState({ sidebarVisible: true, sidebarStyle: 'mobile' })}
+								className="sidebar-button"
+							/>
+						) : null}
+
+						<Content
+							className="content"
+							onClick={() =>
+								this.state.sidebarStyle !== 'web' ? this.setState({ sidebarStyle: 'hide' }) : null}
+						>
 							<Route exact path="/" component={Balance} />
 							<Route path="/categories" component={Categories} />
 							<Route path="/goals" component={Goals} />

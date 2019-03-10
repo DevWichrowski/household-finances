@@ -3,6 +3,7 @@ import { Modal, Input, Button } from 'antd';
 import NumericInput from 'react-numeric-input';
 import { connect } from 'react-redux';
 import { addGoal } from '../../../store/actions/goalsAction';
+import './AddGoalModal.scss';
 
 class AddGoalModal extends Component {
 	constructor(props) {
@@ -28,7 +29,7 @@ class AddGoalModal extends Component {
 		const { loading } = this.state;
 		return (
 			<div className="AddGoalModal">
-				<Modal
+				<Modal className="add-goal-modal"
 					title="Dodaj nowy cel"
 					visible={this.props.visible}
 					onCancel={this.props.onCancel}

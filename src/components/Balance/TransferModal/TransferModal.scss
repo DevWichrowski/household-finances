@@ -1,3 +1,7 @@
-.TransferModal {
-    
+
+@media screen and (max-width: 650px) {
+    .transfer-funds-modal {
+        max-width: 100%!important;
+        width: 100%!important;
+    }
 }

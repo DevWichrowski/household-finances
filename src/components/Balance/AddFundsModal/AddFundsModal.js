@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addCredits } from '../../../store/actions/balanceAction';
 import NumericInput from 'react-numeric-input';
 import { getAddCategoriesSelector } from '../../../store/selectors/balance.selectors';
+import './AddFundsModal.scss';
 
 class AddFundsModal extends Component {
 	constructor(props) {
@@ -49,6 +50,7 @@ class AddFundsModal extends Component {
 		return (
 			<div className="AddFundsModal">
 				<Modal
+					className="add-funds-modal"
 					visible={this.props.visible}
 					title="Dodaj kwotę"
 					onOk={this.handleOk}
@@ -76,11 +78,10 @@ class AddFundsModal extends Component {
 						onChange={this.saveCategoryToState}
 					>
 						{this.props.addCategories.map((item, index) => (
-								<Option key={index} value={item}>
-									{item}
-								</Option>
-							)
-						)}
+							<Option key={index} value={item}>
+								{item}
+							</Option>
+						))}
 					</Select>
 				</Modal>
 			</div>

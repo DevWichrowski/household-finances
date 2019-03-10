@@ -1,4 +1,4 @@
-.OperationsModal{
+.OperationsModal {
   position: absolute;
   margin-bottom: 3%;
   margin-right: 5%;
@@ -6,8 +6,9 @@
   right: 0;
   z-index: 1;
 }
-.operations-modal{
-  width: 15%!important;
+
+.operations-modal {
+  width: 15% !important;
   position: absolute;
   transform-origin: 763.2px 528px 0px;
   bottom: 0;
@@ -17,15 +18,32 @@
   top: unset;
 }
 
-.modal-option{
+.modal-option {
   width: 100%;
   padding: 10px;
   cursor: pointer;
   text-align: center;
 }
 
-.modal-option:hover{
+.modal-option:hover {
   color: white;
   background-color: #1890ff;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 650px) {
+  .operations-modal {
+    width: 100% !important;
+    position: absolute;
+    -webkit-transform-origin: 763.2px 528px 0px;
+    transform-origin: 763.2px 528px 0px;
+    bottom: 0;
+    margin-bottom: 1%;
+    top: unset;
+  }
+
+  .ant-modal {
+    max-width: unset !important;
+    margin: 0 !important;
+  }
 }

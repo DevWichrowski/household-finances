@@ -25,3 +25,12 @@
         padding: 10px;
     }
 }
+
+@media screen and (max-width: 650px) {
+    .OperationsTable {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        overflow: auto;
+    }
+}

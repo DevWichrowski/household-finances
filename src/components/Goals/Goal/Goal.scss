@@ -5,3 +5,9 @@
         float: right;
     }
 }
+
+@media screen and (max-width: 650px) {
+    .Goal {
+        margin: 20% 10%;
+    }
+}

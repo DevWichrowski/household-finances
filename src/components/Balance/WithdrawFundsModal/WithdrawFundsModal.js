@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
 import NumericInput from 'react-numeric-input';
 import { getBalanceSelector, getWithdrawSelector } from '../../../store/selectors/balance.selectors';
+import './WithdrawFundsModal.scss'
 
 class WithdrawFundsModal extends Component {
 	constructor(props) {
@@ -58,7 +59,7 @@ class WithdrawFundsModal extends Component {
 
 		return (
 			<div className="WithdrawFundsModal">
-				<Modal
+				<Modal className="withdraw-funds-modal"
 					visible={this.props.visible}
 					title="Wypłać z konta"
 					onOk={this.handleOk}
