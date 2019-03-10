@@ -4,15 +4,15 @@ self.__precacheManifest = [
     "url": "/household-finances/static/js/runtime~main.5c72c891.js"
   },
   {
-    "revision": "8a8f4efb95b937964d62",
-    "url": "/household-finances/static/js/main.05f25ab2.chunk.js"
+    "revision": "d8b41f39368a2f35b940",
+    "url": "/household-finances/static/js/main.0ec80f68.chunk.js"
   },
   {
     "revision": "dbbd5130f0ba96b3a5f7",
     "url": "/household-finances/static/js/2.da40bb89.chunk.js"
   },
   {
-    "revision": "8a8f4efb95b937964d62",
+    "revision": "d8b41f39368a2f35b940",
     "url": "/household-finances/static/css/main.1997ee88.chunk.css"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/household-finances/static/css/2.3b9d2585.chunk.css"
   },
   {
-    "revision": "d315d559ace19028046bde98b550f859",
+    "revision": "6e30d2998e3ee3c7fd436f63c311856b",
     "url": "/household-finances/index.html"
   }
 ];
