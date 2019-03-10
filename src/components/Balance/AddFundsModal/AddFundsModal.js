@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addCredits } from '../../../store/actions/balanceAction';
 import NumericInput from 'react-numeric-input';
 import { getAddCategoriesSelector } from '../../../store/selectors/balance.selectors';
+import './AddFundsModal.scss';
 
 class AddFundsModal extends Component {
 	constructor(props) {
@@ -48,7 +49,7 @@ class AddFundsModal extends Component {
 
 		return (
 			<div className="AddFundsModal">
-				<Modal
+				<Modal className="add-funds-modal"
 					visible={this.props.visible}
 					title="Dodaj kwotę"
 					onOk={this.handleOk}
