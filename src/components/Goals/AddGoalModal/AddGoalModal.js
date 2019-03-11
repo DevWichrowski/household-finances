@@ -22,11 +22,11 @@ class AddGoalModal extends Component {
 	addGoal = () => {
 		if (this.state.goalFunds > 0) {
 			this.props.addGoal({ goalTitle: this.state.goalTitle, fundsNeeded: this.state.goalFunds });
-			message.success(`Stworzono nowy cel [${this.state.goalTitle}]`);
+			message.success(`Created new goal [${this.state.goalTitle}]`);
 			this.setState({ goalTitle: '', goalFunds: null });
 			this.props.onCancel();
 		} else {
-			message.error(`Podaj liczbę wiekszą od 0`);
+			message.error(`Enter a number greater than 0`);
 		}
 	};
 
@@ -36,24 +36,24 @@ class AddGoalModal extends Component {
 			<div className="AddGoalModal">
 				<Modal
 					className="add-goal-modal"
-					title="Dodaj nowy cel"
+					title="Add new goal"
 					visible={this.props.visible}
 					onCancel={this.props.onCancel}
 					footer={[
 						<Button key="back" onClick={this.props.onCancel}>
-							Zamknij
+							Close
 						</Button>,
 						<Button key="submit" type="primary" loading={loading} onClick={() => this.addGoal()}>
-							Dodaj cel
+							Add
 						</Button>
 					]}
 				>
 					<div>
-						<p>Podaj nazwe celu</p>
+						<p>Enter name of the goal</p>
 						<Input onChange={this.saveGoalTitle} value={this.state.goalTitle} />
 					</div>
 					<div>
-						<p>Podaj sumę na osiągnięcie celu:</p>
+						<p>Enter the funds to reach the goal:</p>
 						<NumericInput
 							onChange={(value) => this.saveGoalFunds(value)}
 							value={this.state.goalFunds}
