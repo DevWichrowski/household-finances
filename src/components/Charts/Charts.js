@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Charts.scss';
-import OperationCountChart from './OperationCountChart/OperationCountChart';
 import CountChart from './CountChart/CountChart';
 import {
 	getOperationsSelector,
@@ -49,10 +48,31 @@ class Charts extends Component {
 		return false;
 	};
 
+	countOperations = (type) => {
+		const operations = [];
+		this.props.operations.map((operation) => {
+			if (operation.operationType === type) {
+				operations.push(operation);
+			}
+		});
+		return operations.length;
+	};
+
+	countOperationsArray = [
+		{ totalFunds: this.countOperations('addOperation') },
+		{ totalFunds: this.countOperations('withdrawOperation') },
+		{ totalFunds: this.countOperations('transferOperation') }
+	];
+
 	render() {
 		return (
 			<div className="charts">
-				<OperationCountChart className="chart" />
+				<CountChart
+					labels={[ 'Income', 'Withdraw', 'Transfer to goal' ]}
+					data={this.countOperationsArray}
+					title={'Number of operations performed'}
+					className="chart"
+				/>
 				<CountChart
 					labels={[ 'Income', 'Withdraw', 'Transfer to goal' ]}
 					data={this.countAllOperation()}
@@ -71,11 +91,8 @@ class Charts extends Component {
 					title={'Transfers to the goals'}
 					className="chart"
 				/>
-				<CountChart 
-					labels={this.props.addCategories} 
-					data={this.props.addTotalFunds} 
-					title={'Funds income'} 
-				/>
+				<CountChart labels={this.props.addCategories} data={this.props.addTotalFunds} title={'Funds income'} />
+				{console.log(this.countOperationsArray)}
 			</div>
 		);
 	}
