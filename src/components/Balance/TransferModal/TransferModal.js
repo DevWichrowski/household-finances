@@ -24,17 +24,25 @@ class TransferModal extends Component {
 	saveGoalTitleID = (title, id) => this.setState({ goalTitle: title, goalId: id });
 
 	transferFunds = () => {
-		if (this.state.funds <= this.props.balance && this.state.goalTitle !== null) {
-			this.props.transferToGoal({
-				id: this.state.goalId,
-				funds: this.state.funds,
-				category: this.state.goalTitle
-			});
-			this.props.onCancel();
-			message.success(`Succesfully transfered [${this.state.funds}$] to goal [${this.state.goalTitle}]`);
-		} else {
-			message.error(`Error: Failed to transfer [${this.state.funds}$] to goal [${this.state.goalTitle}]`);
-		}
+		this.props.goals.map((goal) => {
+			if (goal.id === this.state.goalId) {
+				if (goal.fundsNeeded - goal.currentFunds < this.state.funds) {
+					message.error('Error: You want to transfer more than is needed to reach goal.');
+					return;
+				}
+				if (this.state.funds <= this.props.balance && this.state.goalTitle !== null) {
+					this.props.transferToGoal({
+						id: this.state.goalId,
+						funds: this.state.funds,
+						category: this.state.goalTitle
+					});
+					this.props.onCancel();
+					message.success(`Succesfully transfered [${this.state.funds}$] to goal [${this.state.goalTitle}]`);
+				} else {
+					message.error(`Error: Failed to transfer [${this.state.funds}$] to goal [${this.state.goalTitle}]`);
+				}
+			}
+		});
 	};
 
 	render() {
