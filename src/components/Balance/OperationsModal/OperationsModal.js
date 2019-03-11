@@ -8,19 +8,19 @@ class OperationsModal extends Component {
 			<div className="OperationsModal">
 				<Modal
 					className="operations-modal"
-					title="Operacje"
+					title="Operations"
 					visible={this.props.visible}
 					onCancel={this.props.onCancel}
 					footer={null}
 				>
 					<div className="modal-option" onClick={() => this.props.showAddModal()}>
-						Dodaj kwote
+						Add funds
 					</div>
 					<div className="modal-option" onClick={() => this.props.showWithdrawFundsModal()}>
-						Wypłać kwote
+						Withdraw funds
 					</div>
 					<div className="modal-option" onClick={() => this.props.showTransferModal()}>
-						Przelej na cel
+						Transfer to goal
 					</div>
 				</Modal>
 			</div>

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addCredits, withdrawCredits } from '../../../store/actions/balanceAction';
 import NumericInput from 'react-numeric-input';
 import { getBalanceSelector, getWithdrawSelector } from '../../../store/selectors/balance.selectors';
-import './WithdrawFundsModal.scss'
+import './WithdrawFundsModal.scss';
 
 class WithdrawFundsModal extends Component {
 	constructor(props) {
@@ -15,7 +15,7 @@ class WithdrawFundsModal extends Component {
 			loading: false,
 			visible: false,
 			funds: null,
-			category: 'Bez kategorii'
+			category: 'No category'
 		};
 	}
 
@@ -35,15 +35,15 @@ class WithdrawFundsModal extends Component {
 				this.props.onCancel();
 				this.successMessage();
 			} else {
-				this.errorMessage(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
+				this.errorMessage(`Error: Incorrect amount [${this.state.funds}$]`);
 			}
 		} else {
-			this.errorMessage(`Brak wystarczających środków na koncie.`);
+			this.errorMessage(`There are not enough funds on the account.`);
 		}
 	};
 
 	successMessage = () => {
-		message.success(`Pomyślnie wypłacono ${this.state.funds} zł z konta głównego`);
+		message.success(`Succesfully withdrawn ${this.state.funds}$ from the account`);
 		this.clearState();
 	};
 
@@ -59,21 +59,22 @@ class WithdrawFundsModal extends Component {
 
 		return (
 			<div className="WithdrawFundsModal">
-				<Modal className="withdraw-funds-modal"
+				<Modal
+					className="withdraw-funds-modal"
 					visible={this.props.visible}
-					title="Wypłać z konta"
+					title="Withdraw from account"
 					onOk={this.handleOk}
 					onCancel={this.props.onCancel}
 					footer={[
 						<Button key="back" onClick={this.props.onCancel}>
-							Zamknij
+							Close
 						</Button>,
 						<Button key="submit" type="primary" loading={loading} onClick={this.withdrawFunds}>
-							Wypłać
+							Withdraw
 						</Button>
 					]}
 				>
-					<p> Poniżej podaj kwotę do wypłaty </p>
+					<p>Enter the amount to be withdrawn</p>
 					<NumericInput
 						className="numeric-input"
 						onChange={(value) => this.saveFundsToState(value)}
@@ -81,12 +82,8 @@ class WithdrawFundsModal extends Component {
 						size={30}
 						value={this.state.funds}
 					/>
-					<p> Wybierz kategorie </p>
-					<Select
-						className="category-select"
-						defaultValue="Bez kategorii"
-						onChange={this.saveCategoryToState}
-					>
+					<p> Choose category </p>
+					<Select className="category-select" defaultValue="No category" onChange={this.saveCategoryToState}>
 						{this.props.withdrawCategories.map((item, index) => {
 							return (
 								<Option key={index} value={item}>

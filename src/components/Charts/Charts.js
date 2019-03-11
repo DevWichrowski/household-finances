@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Charts.scss';
-import OperationCountChart from './OperationCountChart/OperationCountChart';
 import CountChart from './CountChart/CountChart';
 import {
 	getOperationsSelector,
@@ -49,32 +48,53 @@ class Charts extends Component {
 		return false;
 	};
 
+	countOperations = (type) => {
+		const operations = [];
+		this.props.operations.map((operation) => {
+			if (operation.operationType === type) {
+				operations.push(operation);
+			}
+		});
+		return operations.length;
+	};
+
+	countOperationsArray = [
+		{ totalFunds: this.countOperations('addOperation') },
+		{ totalFunds: this.countOperations('withdrawOperation') },
+		{ totalFunds: this.countOperations('transferOperation') }
+	];
+
 	render() {
 		return (
 			<div className="charts">
-				<OperationCountChart className="chart" />
 				<CountChart
-					labels={[ 'Wpłata', 'Wypłata', 'Przelew na cel' ]}
+					labels={[ 'Income', 'Withdraw', 'Transfer to goal' ]}
+					data={this.countOperationsArray}
+					title={'Number of operations performed'}
+					className="chart"
+				/>
+				<CountChart
+					labels={[ 'Income', 'Withdraw', 'Transfer to goal' ]}
 					data={this.countAllOperation()}
-					title={'Suma wszystkich operacji'}
+					title={'The sum of all operations'}
 					className="chart"
 				/>
 				<CountChart
 					labels={this.props.withdrawCategories}
 					data={this.props.withdrawTotalFunds}
-					title={'Wypłaty gotówki'}
+					title={'Funds withdrawals'}
 					className="chart"
 				/>
 				<CountChart
 					labels={[ this.props.goalTitles ]}
 					data={this.props.getGoalsTotalFunds}
-					title={'Przelewy na cel'}
+					title={'Transfers to the goals'}
 					className="chart"
 				/>
 				<CountChart 
 					labels={this.props.addCategories} 
 					data={this.props.addTotalFunds} 
-					title={'Wpłat gotówki'} 
+					title={'Funds income'} 
 				/>
 			</div>
 		);

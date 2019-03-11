@@ -59,27 +59,27 @@ class Main extends Component {
 								<Menu.Item key="1">
 									<NavLink to="/">
 										<Icon type="credit-card" />
-										<span>Stan konta</span>
+										<span>Account</span>
 									</NavLink>
 								</Menu.Item>
 
 								<Menu.Item key="2">
 									<NavLink to="/categories" />
 									<Icon type="book" />
-									<span>Kategorie</span>
+									<span>Categories</span>
 								</Menu.Item>
 
 								<Menu.Item key="3">
 									<NavLink to="/charts">
 										<Icon type="line-chart" />
-										<span>Wykresy</span>
+										<span>Charts</span>
 									</NavLink>
 								</Menu.Item>
 
 								<Menu.Item key="4">
 									<NavLink to="/goals" />
 									<Icon type="star" />
-									<span>Cele</span>
+									<span>Goals</span>
 								</Menu.Item>
 							</Menu>
 						</Sider>

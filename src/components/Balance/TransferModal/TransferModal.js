@@ -24,17 +24,25 @@ class TransferModal extends Component {
 	saveGoalTitleID = (title, id) => this.setState({ goalTitle: title, goalId: id });
 
 	transferFunds = () => {
-		if (this.state.funds <= this.props.balance && this.state.goalTitle !== null) {
-			this.props.transferToGoal({
-				id: this.state.goalId,
-				funds: this.state.funds,
-				category: this.state.goalTitle
-			});
-			this.props.onCancel();
-			message.success(`Przelano pomyślnie [${this.state.funds} zł] na cel [${this.state.goalTitle}]`);
-		} else {
-			message.error(`Błąd: Nie udało się przelać [${this.state.funds} zł] na cel [${this.state.goalTitle}]`);
-		}
+		this.props.goals.map((goal) => {
+			if (goal.id === this.state.goalId) {
+				if (goal.fundsNeeded - goal.currentFunds < this.state.funds) {
+					message.error('Error: You want to transfer more than is needed to reach goal.');
+					return;
+				}
+				if (this.state.funds <= this.props.balance && this.state.goalTitle !== null) {
+					this.props.transferToGoal({
+						id: this.state.goalId,
+						funds: this.state.funds,
+						category: this.state.goalTitle
+					});
+					this.props.onCancel();
+					message.success(`Succesfully transfered [${this.state.funds}$] to goal [${this.state.goalTitle}]`);
+				} else {
+					message.error(`Error: Failed to transfer [${this.state.funds}$] to goal [${this.state.goalTitle}]`);
+				}
+			}
+		});
 	};
 
 	render() {
@@ -45,19 +53,19 @@ class TransferModal extends Component {
 			<div className="TransferModal">
 				<Modal
 					className="transfer-funds-modal"
-					title="Przelej na cel"
+					title="Transfer to the goal"
 					visible={this.props.visible}
 					onCancel={this.props.onCancel}
 					footer={[
 						<Button key="back" onClick={this.props.onCancel}>
-							Zamknij
+							Close
 						</Button>,
 						<Button key="submit" type="primary" loading={loading} onClick={() => this.transferFunds()}>
-							Przelej
+							Transfer
 						</Button>
 					]}
 				>
-					<p>Podaj kwotę</p>
+					<p>Enter the amount</p>
 					<NumericInput
 						className="numeric-input"
 						onChange={(value) => this.saveFunds(value)}
@@ -67,7 +75,7 @@ class TransferModal extends Component {
 						value={this.state.funds}
 					/>
 					<p>Wybierz cel</p>
-					<Select className="category-select" defaultValue="Wybierz cel">
+					<Select className="category-select" defaultValue="Choose a goal">
 						{this.props.goals.map((item, index) => {
 							return (
 								<Option key={index} onClick={() => this.saveGoalTitleID(item.goalTitle, item.id)}>

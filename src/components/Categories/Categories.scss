@@ -24,8 +24,6 @@
             width: 40%;
         }
     }
-
-
 }
 
 @media screen and (max-width: 650px) {
@@ -34,15 +32,19 @@
             margin: 55px auto;
         }
 
+        h1 {
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
+
         .add-category-button {
             position: absolute !important;
             bottom: unset !important;
             top: 0;
             margin-right: 0 !important;
             margin-bottom: 0 !important;
-            margin-top: 55px;
+            margin-top: 80px;
             width: 100%;
         }
     }
-
 }

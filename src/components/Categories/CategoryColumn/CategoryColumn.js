@@ -8,7 +8,7 @@ export default function CategoryColumn(props) {
 			<List
 				header={
 					<div>
-						<Icon id={`${props.arrow}`} type={`${props.arrow}`} /> <strong>Kategorie wpłat</strong>
+						<Icon id={`${props.arrow}`} type={`${props.arrow}`} /> <strong>Withdraw categories</strong>
 					</div>
 				}
 				itemLayout="horizontal"

@@ -22,16 +22,16 @@ class Goals extends Component {
 
 	deleteGoal = (id, title) => {
 		this.props.deleteGoal(id);
-		message.success(`Usunięto cel: [${title}]`);
+		message.success(`Deleted goal: [${title}]`);
 	};
 
 	render() {
 		return (
 			<div className="Goals">
-				<h1>Cele</h1>
+				<h1>Goals</h1>
 
 				<Button className="add-goal-button" type="primary" size={'large'} onClick={this.showModal}>
-					Dodaj cel
+					Add goal
 				</Button>
 				<AddGoalModal visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} />
 				{this.props.goals.map((goal, index) => {

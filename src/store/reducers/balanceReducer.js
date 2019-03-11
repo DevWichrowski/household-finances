@@ -1,31 +1,24 @@
 import * as BalanceAction from '../actions/balanceAction';
 
 const initialState = {
-	balance: 5000,
+	balance: 0,
 	operations: [
-		{
-			id: '_asd123eas',
-			funds: 5000,
-			operationType: 'addOperation',
-			operationDate: '10-02-2019, 17:35',
-			category: 'Wynagrodzenie'
-		}
 	],
-	addCategories: [ 'Wynagrodzenie', 'Oddany dług', 'Prezent', 'Sprzedaż', 'Bez kategorii' ],
-	withdrawCategories: [ 'Rachunki', 'Rozrywka', 'Zakupy', 'Naprawa', 'Bez kategorii' ],
+	addCategories: [ 'Salary', 'Return of debt', 'Gift', 'Sale', 'No  category' ],
+	withdrawCategories: [ 'Bills', 'Entertainment', 'Shopping', 'Repair', 'No category' ],
 	addCategoriesCount: [
-		{ category: 'Wynagrodzenie', totalFunds: 5000 },
-		{ category: 'Oddany dług', totalFunds: 0 },
-		{ category: 'Prezent', totalFunds: 0 },
-		{ category: 'Sprzedaż', totalFunds: 0 },
-		{ category: 'Bez kategorii', totalFunds: 0 }
+		{ category: 'Salary', totalFunds: 0 },
+		{ category: 'Return of debt', totalFunds: 0 },
+		{ category: 'Gift', totalFunds: 0 },
+		{ category: 'Sale', totalFunds: 0 },
+		{ category: 'No  category', totalFunds: 0 }
 	],
 	withdrawCategoriesCount: [
-		{ category: 'Rachunki', totalFunds: 0 },
-		{ category: 'Rozrywka', totalFunds: 0 },
-		{ category: 'Zakupy', totalFunds: 0 },
-		{ category: 'Naprawa', totalFunds: 0 },
-		{ category: 'Bez kategorii', totalFunds: 0 }
+		{ category: 'Bills', totalFunds: 0 },
+		{ category: 'Entertainment', totalFunds: 0 },
+		{ category: 'Shopping', totalFunds: 0 },
+		{ category: 'Repair', totalFunds: 0 },
+		{ category: 'No  category', totalFunds: 0 }
 	],
 };
 

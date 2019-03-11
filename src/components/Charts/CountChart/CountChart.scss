@@ -1,7 +1,14 @@
 .AddCountCharts {
     margin: 0 0 40px 0;
+    width: 50%;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     display: flex;
+}
+
+@media screen and (max-width: 650px) {
+    .AddCountCharts {
+        width: 100%;
+    }
 }

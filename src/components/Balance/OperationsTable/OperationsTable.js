@@ -39,13 +39,13 @@ class OperationsTable extends Component {
 					let color = 'blue';
 					let text = null;
 					if (operationType === 'addOperation') {
-						text = 'Wpłata';
+						text = 'Income';
 						color = 'green';
 					} else if (operationType === 'transferOperation') {
-						text = 'Na Cel';
+						text = 'To goal';
 						color = 'blue';
 					} else {
-						text = 'Wypłata';
+						text = 'Withdraw';
 						color = 'volcano';
 					}
 					return (
@@ -56,17 +56,17 @@ class OperationsTable extends Component {
 				}
 			},
 			{
-				title: 'Kategoria',
+				title: 'Category',
 				dataIndex: 'category',
 				key: 'category'
 			},
 			{
-				title: 'Data operacji',
+				title: 'Date of operation',
 				dataIndex: 'operationDate',
 				key: 'operationDate'
 			},
 			{
-				title: 'Kwota [zł]',
+				title: 'Amount [$]',
 				dataIndex: `funds`,
 				key: `funds`
 			}
@@ -79,7 +79,7 @@ class OperationsTable extends Component {
 					rowKey={'id'}
 					dataSource={this.props.operations}
 					columns={columns}
-					description={'brak danych'}
+					description={'No data'}
 					pagination={{ pageSize: 5 }}
 				/>
 			</div>
