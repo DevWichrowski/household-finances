@@ -1,8 +1,8 @@
 import * as GoalsAction from '../actions/goalsAction';
 
 const initialState = {
-	goals: [ { id: '_aweq13221', goalTitle: 'Na motocykl', fundsNeeded: 1000, currentFunds: 100 } ],
-	transferCount: [ { goalTitle: 'Na motocykl', totalFunds: 100 } ]
+	goals: [],
+	transferCount: []
 };
 
 export function goalsReducer(state = initialState, action) {
@@ -42,7 +42,7 @@ export function goalsReducer(state = initialState, action) {
 							...transfer,
 							totalFunds: transfer.totalFunds + action.payload.funds,
 							goalTitle: action.payload.category
-						}
+						};
 					} else {
 						return transfer;
 					}

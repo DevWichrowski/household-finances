@@ -37,12 +37,12 @@ class CategoryModal extends Component {
 
 		switch (true) {
 			case this.state.categoryName === '': {
-				message.error('Nie udało się dodać kategorii');
+				message.error('Category could not be added');
 				break;
 			}
 			case this.state.categoryType === 'addCategory' && !addCategoriesLowerCase.includes(categoryNameToLower): {
 				this.props.newAddCategory(categoryNameToLower);
-				message.success(`Pomyślnie dodano nową kategorie wpłaty: [${this.state.categoryName}]`);
+				message.success(`New income categories have been successfully added: [${this.state.categoryName}]`);
 				this.props.onCancel();
 				this.setState({ categoryName: '' });
 				break;
@@ -50,14 +50,14 @@ class CategoryModal extends Component {
 			case this.state.categoryType === 'withdrawCategory' &&
 				!withdrawCategoriesLowerCase.includes(categoryNameToLower): {
 				this.props.newWithdrawCategory(categoryNameToLower);
-				message.success(`Pomyślnie dodano nową kategorie wypłaty: [${this.state.categoryName}]`);
+				message.success(`A new withdraw category has been successfully added: [${this.state.categoryName}]`);
 				this.props.onCancel();
 				this.setState({ categoryName: '' });
 				break;
 			}
 			case addCategoriesLowerCase.includes(categoryNameToLower) ||
 				withdrawCategoriesLowerCase.includes(categoryNameToLower): {
-				message.error(`Kategoria [${this.state.categoryName}] już istnieje.`);
+				message.error(`Category [${this.state.categoryName}] already exists.`);
 				break;
 			}
 			default: {
@@ -73,27 +73,27 @@ class CategoryModal extends Component {
 			<div className="CategoryModal">
 				<Modal
 					className="category-modal"
-					title="Dodaj nową kategorię"
+					title="Add new category"
 					visible={this.props.visible}
 					onCancel={this.props.onCancel}
 					onOk={this.handleOk}
 					footer={[
 						<Button key="back" onClick={this.props.onCancel}>
-							Zamknij
+							Close
 						</Button>,
 						<Button key="submit" type="primary" loading={loading} onClick={this.addNewCategory}>
-							Dodaj
+							Add
 						</Button>
 					]}
 				>
-					<p> Podaj tytuł nowej kategorii:</p>
+					<p>Enter the title of the new category:</p>
 					<Input onChange={this.saveCategoryName} value={this.state.categoryName} />
 					<Radio.Group defaultValue="addCategory" buttonStyle="solid">
 						<Radio.Button value="addCategory" onClick={this.switchToAddCategory}>
-							Nowa kategoria wpłaty
+							New income category
 						</Radio.Button>
 						<Radio.Button value="withdrawCategory" onClick={this.switchToWithdrawCategory}>
-							Nowa kategoria wypłaty
+							New withdraw category
 						</Radio.Button>
 					</Radio.Group>
 				</Modal>

@@ -17,17 +17,12 @@ class Categories extends Component {
 
 	showModal = () => this.setState({ visible: true });
 
-	handleCancel = (e) => {
-		console.log(e);
-		this.setState({
-			visible: false
-		});
-	};
+	handleCancel = (e) => this.setState({ visible: false });
 
 	render() {
 		return (
 			<div className="Categories">
-				<h1> Kategorie operacji </h1>
+				<h1> Operations categories </h1>
 				<div className="categories-container">
 					<div className="left-column">
 						<CategoryColumn dataSource={this.props.addCategories} arrow="arrow-up" />
@@ -40,7 +35,7 @@ class Categories extends Component {
 				<CategoryModal visible={this.state.visible} onCancel={this.handleCancel} />
 
 				<Button className="add-category-button" type="primary" size={'large'} onClick={this.showModal}>
-					Dodaj kategorię
+					Add category
 				</Button>
 			</div>
 		);

@@ -15,13 +15,13 @@ class AddFundsModal extends Component {
 			loading: false,
 			visible: false,
 			funds: null,
-			category: 'Bez kategorii'
+			category: 'No category'
 		};
 	}
 
-	successMessage = () => message.success(`Pomyślnie dodane ${this.state.funds} zł do konta głównego`);
+	successMessage = () => message.success(`Successfully added ${this.state.funds}$ to account`);
 
-	errorMessage = () => message.error(`Błąd: Nie odpowiednia kwota [${this.state.funds} zł]`);
+	errorMessage = () => message.error(`Error: Incorrect amount [${this.state.funds}$]`);
 
 	saveCategoryToState = (value) => this.setState({ category: value });
 
@@ -52,29 +52,29 @@ class AddFundsModal extends Component {
 				<Modal
 					className="add-funds-modal"
 					visible={this.props.visible}
-					title="Dodaj kwotę"
+					title="Add amount"
 					onOk={this.handleOk}
 					onCancel={this.props.onCancel}
 					footer={[
 						<Button key="back" onClick={this.props.onCancel}>
-							Zamknij
+							Close
 						</Button>,
 						<Button key="submit" type="primary" loading={loading} onClick={this.addFunds}>
-							Dodaj
+							Add
 						</Button>
 					]}
 				>
-					<p>Poniżej podaj kwotę do wpłaty</p>
+					<p>Give the amount to be added below</p>
 					<NumericInput
 						onChange={(value) => this.saveFundsToState(value)}
 						value={this.state.funds}
 						min={1}
 						size={30}
 					/>
-					<p>Wybierz kategorie</p>
+					<p>Choose category</p>
 					<Select
 						className="category-select"
-						defaultValue="Bez kategorii"
+						defaultValue="No category"
 						onChange={this.saveCategoryToState}
 					>
 						{this.props.addCategories.map((item, index) => (

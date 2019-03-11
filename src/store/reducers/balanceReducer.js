@@ -1,20 +1,13 @@
 import * as BalanceAction from '../actions/balanceAction';
 
 const initialState = {
-	balance: 5000,
+	balance: 0,
 	operations: [
-		{
-			id: '_asd123eas',
-			funds: 5000,
-			operationType: 'addOperation',
-			operationDate: '10-02-2019, 17:35',
-			category: 'Wynagrodzenie'
-		}
 	],
 	addCategories: [ 'Wynagrodzenie', 'Oddany dług', 'Prezent', 'Sprzedaż', 'Bez kategorii' ],
 	withdrawCategories: [ 'Rachunki', 'Rozrywka', 'Zakupy', 'Naprawa', 'Bez kategorii' ],
 	addCategoriesCount: [
-		{ category: 'Wynagrodzenie', totalFunds: 5000 },
+		{ category: 'Wynagrodzenie', totalFunds: 0 },
 		{ category: 'Oddany dług', totalFunds: 0 },
 		{ category: 'Prezent', totalFunds: 0 },
 		{ category: 'Sprzedaż', totalFunds: 0 },

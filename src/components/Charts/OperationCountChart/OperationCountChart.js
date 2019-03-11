@@ -29,7 +29,7 @@ class OperationCountChart extends Component {
 	}
 
 	data = {
-		labels: [ 'Wpłata', 'Wypłata', 'Przelew na cel' ],
+		labels: [ 'Income', 'Withdraw', 'Transfer to goal' ],
 		datasets: [
 			{
 				data: [
@@ -46,9 +46,9 @@ class OperationCountChart extends Component {
 	render() {
 		return (
 			<div className="OperationCountChart">
-				<h2>Ilość wykonanych operacji</h2>
+				<h2>Number of operations performed</h2>
 				{/* <Pie data={this.data} /> */}
-				{ this.hasEntries() ? (<Pie data={this.data} />) : (<h2>Brak danych</h2>) }	
+				{ this.hasEntries() ? (<Pie data={this.data} />) : (<h2>No data</h2>) }	
 			</div>
 		);
 	}

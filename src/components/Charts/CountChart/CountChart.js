@@ -55,7 +55,7 @@ class CountChart extends Component {
 		return (
 			<div className="AddCountCharts">
 				<h2>{this.props.title}</h2>
-				{ this.hasEntries() ? (<Doughnut data={this.data} />) : (<h2>Brak danych</h2>) }	
+				{ this.hasEntries() ? (<Doughnut data={this.data} />) : (<h2>No data</h2>) }	
 			</div>
 		);
 	}

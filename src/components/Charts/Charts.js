@@ -54,27 +54,27 @@ class Charts extends Component {
 			<div className="charts">
 				<OperationCountChart className="chart" />
 				<CountChart
-					labels={[ 'Wpłata', 'Wypłata', 'Przelew na cel' ]}
+					labels={[ 'Income', 'Withdraw', 'Transfer to goal' ]}
 					data={this.countAllOperation()}
-					title={'Suma wszystkich operacji'}
+					title={'The sum of all operations'}
 					className="chart"
 				/>
 				<CountChart
 					labels={this.props.withdrawCategories}
 					data={this.props.withdrawTotalFunds}
-					title={'Wypłaty gotówki'}
+					title={'Funds withdrawals'}
 					className="chart"
 				/>
 				<CountChart
 					labels={[ this.props.goalTitles ]}
 					data={this.props.getGoalsTotalFunds}
-					title={'Przelewy na cel'}
+					title={'Transfers to the goals'}
 					className="chart"
 				/>
 				<CountChart 
 					labels={this.props.addCategories} 
 					data={this.props.addTotalFunds} 
-					title={'Wpłat gotówki'} 
+					title={'Funds income'} 
 				/>
 			</div>
 		);
