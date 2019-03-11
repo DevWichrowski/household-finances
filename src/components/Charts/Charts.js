@@ -91,8 +91,11 @@ class Charts extends Component {
 					title={'Transfers to the goals'}
 					className="chart"
 				/>
-				<CountChart labels={this.props.addCategories} data={this.props.addTotalFunds} title={'Funds income'} />
-				{console.log(this.countOperationsArray)}
+				<CountChart 
+					labels={this.props.addCategories} 
+					data={this.props.addTotalFunds} 
+					title={'Funds income'} 
+				/>
 			</div>
 		);
 	}
