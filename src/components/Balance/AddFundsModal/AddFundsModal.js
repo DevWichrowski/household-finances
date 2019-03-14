@@ -42,7 +42,7 @@ class AddFundsModal extends Component {
 			this.errorMessage();
 		}
 	};
-
+//test
 	render() {
 		const { loading } = this.state;
 		const Option = Select.Option;
